@@ -1,0 +1,13 @@
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Release\netcoreapp3.1\CSharpCourse.exe
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Release\netcoreapp3.1\CSharpCourse.deps.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Release\netcoreapp3.1\CSharpCourse.runtimeconfig.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Release\netcoreapp3.1\CSharpCourse.runtimeconfig.dev.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Release\netcoreapp3.1\CSharpCourse.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Release\netcoreapp3.1\CSharpCourse.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Release\netcoreapp3.1\CSharpCourse.csprojAssemblyReference.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Release\netcoreapp3.1\CSharpCourse.AssemblyInfoInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Release\netcoreapp3.1\CSharpCourse.AssemblyInfo.cs
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Release\netcoreapp3.1\CSharpCourse.csproj.CoreCompileInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Release\netcoreapp3.1\CSharpCourse.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Release\netcoreapp3.1\CSharpCourse.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Release\netcoreapp3.1\CSharpCourse.genruntimeconfig.cache
