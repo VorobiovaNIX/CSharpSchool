@@ -8,7 +8,74 @@ namespace CSharpCourse
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter the integer");
+            int number = int.Parse(Console.ReadLine());
 
+            Console.WriteLine($"The number of digits: {number.ToString().Length}");
+
+
+
+
+        }
+
+        static void DateTimeIntro()
+        {
+            DateTime now = DateTime.Now;
+            Console.WriteLine(now.ToString());
+
+            Console.WriteLine($"It's {now.Date}, {now.Hour}:{now.Minute}");
+
+            DateTime dt = new DateTime(2016, 2, 28);
+            DateTime newdt = dt.AddDays(1);
+            Console.WriteLine(newdt);
+
+            TimeSpan ts = now - dt;
+            Console.WriteLine(ts.TotalMinutes);
+            ts = now.Subtract(dt);
+            Console.WriteLine(ts.TotalMinutes);
+        }
+
+        static void IntroToArrays()
+        {
+            int[] a1;
+            a1 = new int[10];
+
+            int[] a2 = new int[5];
+            int[] a3 = new int[5] { 1, 3, -2, 5, 10 };
+            int[] a4 = { 1, 3, 4, 5, 9, 7 };
+
+            Console.WriteLine(a4[0]);
+            int number = a4[4];
+
+            Console.WriteLine(number);
+
+            a4[4] = 6;
+            Console.WriteLine(a4[4]);
+
+            Console.WriteLine(a4.Length);
+            Console.WriteLine(a4[a4.Length - 1]);
+
+            string s1 = "dsvfsfvfc";
+            char first = s1[0];
+            char last = s1[s1.Length - 1];
+
+            Console.WriteLine($"First: {first}. Last: {last}");
+
+            // s1[0] = 'z'; - impossible 
+        }
+        static void MathDemo()
+        {
+            long o = Math.BigMul(8000, 90000);
+            Console.WriteLine(o);
+            Console.WriteLine(Math.Pow(2, 3));
+            Console.WriteLine(Math.Sqrt(9));
+            Console.WriteLine(Math.Round(1.8));
+            Console.WriteLine(Math.Round(1.3));
+
+            Console.WriteLine(Math.Round(1.5));
+
+            Console.WriteLine(Math.Round(2.5, MidpointRounding.AwayFromZero));
+            Console.WriteLine(Math.Round(2.5, MidpointRounding.ToEven));
         }
         static void CastingAndParsing()
         {
