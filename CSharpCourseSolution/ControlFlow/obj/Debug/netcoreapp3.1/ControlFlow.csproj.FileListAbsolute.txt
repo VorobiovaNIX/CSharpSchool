@@ -1,0 +1,13 @@
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\bin\Debug\netcoreapp3.1\ControlFlow.exe
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\bin\Debug\netcoreapp3.1\ControlFlow.deps.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\bin\Debug\netcoreapp3.1\ControlFlow.runtimeconfig.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\bin\Debug\netcoreapp3.1\ControlFlow.runtimeconfig.dev.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\bin\Debug\netcoreapp3.1\ControlFlow.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\bin\Debug\netcoreapp3.1\ControlFlow.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\obj\Debug\netcoreapp3.1\ControlFlow.csprojAssemblyReference.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\obj\Debug\netcoreapp3.1\ControlFlow.AssemblyInfoInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\obj\Debug\netcoreapp3.1\ControlFlow.AssemblyInfo.cs
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\obj\Debug\netcoreapp3.1\ControlFlow.csproj.CoreCompileInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\obj\Debug\netcoreapp3.1\ControlFlow.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\obj\Debug\netcoreapp3.1\ControlFlow.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ControlFlow\obj\Debug\netcoreapp3.1\ControlFlow.genruntimeconfig.cache

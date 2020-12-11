@@ -8,16 +8,61 @@ namespace CSharpCourse
     {
         static void Main(string[] args)
         {
+           
+
+        }
+
+        static void CalculateBodyMassIndex()
+        {
+            Console.WriteLine("What is your last name?");
+            string lastName = Console.ReadLine();
+
+            Console.WriteLine("What is your first name?");
+            string firstName = Console.ReadLine();
+
+            Console.WriteLine("What is your age?");
+            int age = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("What is your weight in kg?");
+            double weight = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("What is your height in meters?");
+            double height = double.Parse(Console.ReadLine());
+
+            double bodyMassIndex = weight / (height * height);
+
+            string profile =
+                $"Your profile: {Environment.NewLine}"
+                + $"Full name: {lastName} {firstName} {Environment.NewLine}"
+                + $"Age: {age} {Environment.NewLine}"
+                + $"Weight: {weight} {Environment.NewLine}"
+                + $"Height: {height} {Environment.NewLine}"
+                + $"Body Mass Index: {bodyMassIndex}";
+            Console.WriteLine(profile);
+        }
+        static void NumberOfDigits()
+        {
             Console.WriteLine("Enter the integer");
             int number = int.Parse(Console.ReadLine());
 
             Console.WriteLine($"The number of digits: {number.ToString().Length}");
-
-
-
-
         }
+        static void AreaOfTriangle()
+        {
+            Console.WriteLine("Lets calculate the area of a triangle");
+            Console.WriteLine("Enter please the  lenght of side AB");
+            double ab = double.Parse(Console.ReadLine());
 
+            Console.WriteLine("Enter please the  lenght of side BC");
+            double bc = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter please the  lenght of side CA");
+            double ca = double.Parse(Console.ReadLine());
+
+            double p = (ab + bc + ca) / 2;
+            double square = Math.Sqrt(p * (p - ab) * (p - bc) * (p - ca));
+            Console.WriteLine($"Square ot the triangle equals {square}");
+        }
         static void DateTimeIntro()
         {
             DateTime now = DateTime.Now;
