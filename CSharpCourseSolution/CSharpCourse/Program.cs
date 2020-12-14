@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,8 +9,11 @@ namespace CSharpCourse
     {
         static void Main(string[] args)
         {
-           
+            Character c = new Character();
 
+            c.Hit(10);
+
+            Console.WriteLine(c.Health);
         }
 
         static void CalculateBodyMassIndex()

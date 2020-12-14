@@ -1,0 +1,13 @@
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\bin\Debug\netcoreapp3.1\ArraysCollections.exe
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\bin\Debug\netcoreapp3.1\ArraysCollections.deps.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\bin\Debug\netcoreapp3.1\ArraysCollections.runtimeconfig.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\bin\Debug\netcoreapp3.1\ArraysCollections.runtimeconfig.dev.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\bin\Debug\netcoreapp3.1\ArraysCollections.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\bin\Debug\netcoreapp3.1\ArraysCollections.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\obj\Debug\netcoreapp3.1\ArraysCollections.csprojAssemblyReference.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\obj\Debug\netcoreapp3.1\ArraysCollections.AssemblyInfoInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\obj\Debug\netcoreapp3.1\ArraysCollections.AssemblyInfo.cs
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\obj\Debug\netcoreapp3.1\ArraysCollections.csproj.CoreCompileInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\obj\Debug\netcoreapp3.1\ArraysCollections.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\obj\Debug\netcoreapp3.1\ArraysCollections.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\ArraysCollections\obj\Debug\netcoreapp3.1\ArraysCollections.genruntimeconfig.cache

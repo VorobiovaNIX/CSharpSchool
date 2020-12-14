@@ -11,3 +11,7 @@ C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse
 C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Debug\netcoreapp3.1\CSharpCourse.dll
 C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Debug\netcoreapp3.1\CSharpCourse.pdb
 C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Debug\netcoreapp3.1\CSharpCourse.genruntimeconfig.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Debug\netcoreapp3.1\OOP.exe
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Debug\netcoreapp3.1\OOP.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\bin\Debug\netcoreapp3.1\OOP.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\CSharpCourse\obj\Debug\netcoreapp3.1\CSharpCourse.csproj.CopyComplete
