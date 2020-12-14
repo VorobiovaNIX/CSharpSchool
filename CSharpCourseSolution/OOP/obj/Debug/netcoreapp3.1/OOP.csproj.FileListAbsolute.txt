@@ -10,3 +10,4 @@ C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\OOP\obj\Debu
 C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\OOP\obj\Debug\netcoreapp3.1\OOP.dll
 C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\OOP\obj\Debug\netcoreapp3.1\OOP.pdb
 C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\OOP\obj\Debug\netcoreapp3.1\OOP.genruntimeconfig.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\CSharpCourseSolution\OOP\obj\Debug\netcoreapp3.1\OOP.csprojAssemblyReference.cache
