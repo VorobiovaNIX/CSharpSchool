@@ -4,14 +4,44 @@ using System.Text;
 
 namespace OOP
 {
+    public class Point2D {
+
+        private int x;
+        private int y;
+
+        public Point2D(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+    
+    }
+
     public class Character
     {
-        private static int speed = 10; //static property/field will be the same for all instance of this class
+        private static int speed=10; //static modifier of property/field will be the same for all instance of this class
+
+        private const int height=120; // "const"/ "readonly" modifier makes field not changeable for all instance of this class
+
 
         //public int Health { get; private set; } = 100; auto property 
 
         private int health;
         public int Health = 100;
+
+        public string Race { get; private set; }
+        public int Armor { get; private set; }
+
+        public Character(string race)
+        {
+            Race = race;
+            Armor = 30;
+        }
+        public Character(string race, int armor)
+        {
+            Race = race;
+            Armor = armor;
+        }
 
         public int GetHealth()
         {

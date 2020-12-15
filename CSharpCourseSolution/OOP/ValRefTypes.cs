@@ -11,7 +11,14 @@ namespace OOP
         public int X;
         public int Y;
 
-        public PointRef PointRef;
+        public readonly PointRef PointRef;
+
+        public EvilStruct(int x, int y)
+        {
+            X = x;
+            Y = y;
+            this.PointRef = new PointRef(); // readonly field is initialize in constructor 
+        }
 
     }
     public struct PointVal
