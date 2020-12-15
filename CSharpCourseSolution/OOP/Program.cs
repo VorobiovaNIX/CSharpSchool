@@ -7,12 +7,41 @@ namespace OOP
     {
         static void Main(string[] args)
         {
+            IShape rect = new Rect() { Height = 5, Width = 2 };
+            IShape square = new Square { SideLength = 10 };
+
+            Console.WriteLine($"Rect area = {rect.CalcSquare()}");
+            Console.WriteLine($"Square area = {square.CalcSquare()}");
+
+            //Rect rect = new Rect { Height = 2, Width = 5 }; // вызван конструктор по умолчания 
+            //int rectArea = AreaCalculator.CalcSquare(rect);
+            //Console.WriteLine($"Rect area = {rectArea}");
+
+            //Rect square = new Square { Height = 5 };
+            //int squareArea = AreaCalculator.CalcSquare(square);
+            //Console.WriteLine($"Rect area = {square}");
+
+
+
+            List<object> list = new List<object> { 1, 2, 3 };
+            IBaseCollection collection = new BaseList(4);
+            collection.Add(1);
+            collection.AddRange(list);
+
+
             ModelXTerminal terminal = new ModelXTerminal("123");
             terminal.Connect();
 
+            Shape[] shapes = new Shape[2];
+            shapes[0] = new Triangle(10, 20, 30);
+            shapes[1] = new Rectangle(5, 10);
 
-           
-
+            foreach (Shape item in shapes)
+            {
+                item.Draw();
+                Console.WriteLine(item.Area());
+                Console.WriteLine(item.Perimeter());
+            }
            
         }
         static void CreateInstanceOfClass()
