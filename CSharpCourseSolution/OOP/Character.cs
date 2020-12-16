@@ -29,17 +29,28 @@ namespace OOP
         private int health;
         public int Health = 100;
 
-        public string Race { get; private set; }
+        public Race Race { get; private set; }
         public int Armor { get; private set; }
+        public string Name { get; private set; }
 
-        public Character(string race)
+        public Character(Race race)
         {
             Race = race;
             Armor = 30;
         }
-        public Character(string race, int armor)
+        public Character(Race race, int armor)
         {
             Race = race;
+            Armor = armor;
+        }
+
+        public Character(string name, int armor)
+        {
+            if (name==null)
+                throw new ArgumentNullException("name arg can't be null");
+            if (armor < 0 || armor > 100) throw new ArgumentException("armor can't be less than 0 or greater than 100");
+
+            Name = name;
             Armor = armor;
         }
 
@@ -54,6 +65,12 @@ namespace OOP
 
         public void Hit(int damage)
         {
+            if (GetHealth() == 0)
+            {
+                throw new InvalidOperationException("cannot hit a dead character ");
+            }
+            if (damage > GetHealth()) throw new ArgumentException("damage can't be less");
+
             if (damage > GetHealth()) damage = GetHealth();
             //health -= damage;
             //Health -= damage;

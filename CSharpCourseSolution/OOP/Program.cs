@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP.Homeworks;
+using System;
 using System.Collections.Generic;
 
 namespace OOP
@@ -6,6 +7,51 @@ namespace OOP
     class Program
     {
         static void Main(string[] args)
+        {
+
+            Complex c1 = new Complex(1, 1);
+            Complex c2 = new Complex(1, 2);
+
+            Complex result = c1.Plus(c2);
+            Console.WriteLine($"Result. Real ={result.Real}; Imaginary = {result.Imaginary}");
+
+        }
+
+        static void StackDemo()
+        {
+            MyStack<int> ms = new MyStack<int>();
+            //System.Collections.IEnumerable enumer = (System.Collections.IEnumerable) ms;
+            //enumer.GetEnumerator();
+
+            ms.Push(1);
+            ms.Push(2);
+            ms.Push(3);
+
+            foreach (var item in ms)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            while (ms.Count != 0)
+            {
+                Console.WriteLine(ms.Peek());
+                ms.Pop();
+            }
+
+            //Console.WriteLine(ms.Peek());
+
+            ms.Pop();
+
+            Console.WriteLine(ms.Peek());
+
+            ms.Push(4);
+            ms.Push(5);
+            ms.Push(6);
+            Console.WriteLine(ms.Peek());
+        }
+
+        static void CallingThroughInterface()
         {
             IShape rect = new Rect() { Height = 5, Width = 2 };
             IShape square = new Square { SideLength = 10 };
@@ -27,7 +73,10 @@ namespace OOP
             IBaseCollection collection = new BaseList(4);
             collection.Add(1);
             collection.AddRange(list);
+        }
 
+        static void PolymorphismDemo()
+        {
 
             ModelXTerminal terminal = new ModelXTerminal("123");
             terminal.Connect();
@@ -42,17 +91,17 @@ namespace OOP
                 Console.WriteLine(item.Area());
                 Console.WriteLine(item.Perimeter());
             }
-           
         }
+
         static void CreateInstanceOfClass()
         {
-            Character carachter = new Character("Elf");
+            Character carachter = new Character(Race.Elf);
             carachter.Hit(120);
             Console.WriteLine(carachter.GetHealth());
             Console.WriteLine(carachter.Race);
 
-            Character c1 = new Character("Fairy");
-            Character c2 = new Character("Shrek");
+            Character c1 = new Character(Race.Ork);
+            Character c2 = new Character(Race.Terrain);
             Console.WriteLine($"c1.Speed = {c1.PrintSpeed()} c2.Speed = {c2.PrintSpeed()}");
             c1.IncreaseSpeed();
             Console.WriteLine($"c1.Speed = {c1.PrintSpeed()} c2.Speed = {c2.PrintSpeed()}");
