@@ -1,4 +1,5 @@
 ﻿using OOP.Homeworks;
+using OOP.Homeworks.Hangman;
 using OOP.Homeworks.TicTacToeGame;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,45 @@ namespace OOP
 {
     class Program
     {
-        private static TicTacToeGame g = new TicTacToeGame();
 
         static void Main(string[] args)
         {
+
+            HangmanGame game = new HangmanGame();
+
+            string word = game.GenerateWord();
+
+            Console.WriteLine($"The word consists of {word.Length} letters.");
+            Console.WriteLine("Try to guess the word");
+
+            while (game.GameStatus==GameStatus.InProgress)
+            {
+                Console.WriteLine("Pick a letter");
+                char c = (char)Console.ReadLine().ToCharArray()[0];
+
+                string curState = game.GuessLetter(c);
+                Console.WriteLine(curState);
+
+                Console.WriteLine($"Remaining tries = {game.RemainingTries}");
+                Console.WriteLine($"Tried letters: {game.TriedLetters}");
+            }
+
+            if (game.GameStatus == GameStatus.Lost)
+            {
+                Console.WriteLine("You're hanged.");
+                Console.WriteLine($"The word was: {game.Word}");
+            }
+            else if(game.GameStatus==GameStatus.Won){
+                Console.WriteLine("You won!");
+            }
+        }
+
+        private static TicTacToeGame g = new TicTacToeGame();
+
+        static void HW_RunCrossesAndZeros()
+        {
             Console.WriteLine(GetPrintableState());
-            while (g.GetWinner()==Winner.GameIsUnfinished)
+            while (g.GetWinner() == Winner.GameIsUnfinished)
             {
                 int index = int.Parse(Console.ReadLine());
                 g.MakeMove(index);
@@ -23,8 +57,8 @@ namespace OOP
             }
             Console.WriteLine($"Result: {g.GetWinner()}");
             Console.ReadLine();
-        }
 
+        }
         static string GetPrintableState()
         {
             var sb = new StringBuilder();
@@ -39,7 +73,7 @@ namespace OOP
             return sb.ToString();
         }
 
-         static string GetPrintableChar(int index)
+        static string GetPrintableChar(int index)
         {
             State state = g.GetState(index);
             if (state==State.Unset)
