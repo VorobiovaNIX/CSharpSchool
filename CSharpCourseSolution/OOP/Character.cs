@@ -54,6 +54,10 @@ namespace OOP
             Armor = armor;
         }
 
+        public Character()
+        {
+        }
+
         public int GetHealth()
         {
             return health;
