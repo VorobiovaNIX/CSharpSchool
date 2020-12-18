@@ -1,0 +1,16 @@
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.exe
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.deps.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.runtimeconfig.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.runtimeconfig.dev.json
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.csprojAssemblyReference.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.AssemblyInfoInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.AssemblyInfo.cs
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.csproj.CoreCompileInputs.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.pdb
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.genruntimeconfig.cache
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\bin\Debug\netcoreapp3.1\WebDriver.dll
+C:\Users\vorobiova.a\learnCusharp\CSharpSchool\SpecFlowAndNUnitSchool\obj\Debug\netcoreapp3.1\SpecFlowAndNUnitSchool.csproj.CopyComplete
