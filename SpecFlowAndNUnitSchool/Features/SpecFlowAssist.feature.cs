@@ -20,22 +20,22 @@ namespace SpecFlowAndNUnitSchool.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Returing location data based on country and zip code")]
-    public partial class ReturingLocationDataBasedOnCountryAndZipCodeFeature
+    [NUnit.Framework.DescriptionAttribute("SpecFlowAssist")]
+    public partial class SpecFlowAssistFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RetrievLocationData.feature"
+#line 1 "SpecFlowAssist.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Returing location data based on country and zip code", "As a consumer of the Zippopotam.us API\r\nI want to receive location data matching " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "SpecFlowAssist", "As a consumer of the Zippopotam.us API\r\nI want to receive location data matching " +
                     "the country code and zip code I supply\r\nSo I can use this data to auto-complete " +
                     "forms on my web site", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
@@ -76,15 +76,13 @@ namespace SpecFlowAndNUnitSchool.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("An existing country and zip code yields the correct place name")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void AnExistingCountryAndZipCodeYieldsTheCorrectPlaceName()
+        [NUnit.Framework.DescriptionAttribute("Location data can be added to the database")]
+        public virtual void LocationDataCanBeAddedToTheDatabase()
         {
-            string[] tagsOfScenario = new string[] {
-                    "mytag"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("An existing country and zip code yields the correct place name", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Location data can be added to the database", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,28 +102,53 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the country code us and zip code 90210", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PlaceName",
+                            "Longitude",
+                            "Latitude",
+                            "CountryName"});
+                table2.AddRow(new string[] {
+                            "Alt Bennebek",
+                            "9.4333",
+                            "54.3833",
+                            "Germany"});
+                table2.AddRow(new string[] {
+                            "Klein Rheide",
+                            "9.4833",
+                            "54.45",
+                            "Germany"});
+                table2.AddRow(new string[] {
+                            "Kropp",
+                            "9.5087",
+                            "54.4111",
+                            "Germany"});
+                table2.AddRow(new string[] {
+                            "Klein Bennebek",
+                            "9.45",
+                            "54.4",
+                            "Germany"});
+#line 7
+ testRunner.Given("Susan wants to add the following places for de zip code 24848", ((string)(null)), table2, "Given ");
 #line hidden
-#line 9
- testRunner.When("I request the locations corresponding to these codes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.When("she submits the required data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
- testRunner.Then("the response contains the place name Beverly Hills", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.Then("she should receive a reply indicating success", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("An existing country and zip code yields the right number of results")]
-        public virtual void AnExistingCountryAndZipCodeYieldsTheRightNumberOfResults()
+        [NUnit.Framework.DescriptionAttribute("Country code de and zip code 24848 yields the expected places")]
+        public virtual void CountryCodeDeAndZipCode24848YieldsTheExpectedPlaces()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("An existing country and zip code yields the right number of results", null, tagsOfScenario, argumentsOfScenario);
-#line 12
- this.ScenarioInitialize(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Country code de and zip code 24848 yields the expected places", null, tagsOfScenario, argumentsOfScenario);
+#line 17
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -144,14 +167,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 13
- testRunner.Given("the country code us and zip code 90210", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 18
+ testRunner.Given("country code de and zip code 24848", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 14
+#line 19
  testRunner.When("I request the locations corresponding to these codes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 15
- testRunner.Then("the response contains the place name Beverly Hills", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PlaceName",
+                            "Longitude",
+                            "Latitude"});
+                table3.AddRow(new string[] {
+                            "Alt Bennebek",
+                            "9.4333",
+                            "54.3833"});
+                table3.AddRow(new string[] {
+                            "Klein Rheide",
+                            "9.4833",
+                            "54.45"});
+                table3.AddRow(new string[] {
+                            "Kropp",
+                            "9.5087",
+                            "54.4111"});
+                table3.AddRow(new string[] {
+                            "Klein Bennebek",
+                            "9.45",
+                            "54.4"});
+#line 20
+ testRunner.Then("the following places are returned", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
