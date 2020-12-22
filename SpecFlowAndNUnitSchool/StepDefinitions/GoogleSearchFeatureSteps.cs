@@ -43,7 +43,8 @@ namespace SpecFlowAndNUnitSchool.StepDefinitions
         public void ThenSearchItemsShowsTheItemsRelatedToSubject(string subject)
         {
             IWebElement result = driver.FindElement(By.XPath("//div[@class='rc']//a[@href='https://specflow.org/']"));
-            Assert.IsTrue(subject.Contains(result.Text));
+           // Assert.IsTrue(subject.Contains(result.Text));
+            Assert.That(result.Text.Contains(subject));
         }
     }
 }

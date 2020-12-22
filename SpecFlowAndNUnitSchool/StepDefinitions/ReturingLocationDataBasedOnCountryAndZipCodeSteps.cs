@@ -1,5 +1,4 @@
-﻿using RestSharp.Serialization.Json;
-using System;
+﻿using System;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowAndNUnitSchool.StepDefinitions
@@ -45,7 +44,7 @@ namespace SpecFlowAndNUnitSchool.StepDefinitions
         }
 
         [Then(@"s?he should receive a reply indicating (success|failure)")]
-        public void ThenSheShouldReceiveAReplyIndicating()
+        public void ThenSheShouldReceiveAReplyIndicating(string param)
         {
             
         }
