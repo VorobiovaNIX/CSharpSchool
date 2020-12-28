@@ -128,10 +128,15 @@ this.ScenarioInitialize(scenarioInfo);
                             "6",
                             "2016",
                             "2019"});
+                table1.AddRow(new string[] {
+                            "Audi",
+                            "A5",
+                            "2012",
+                            "2018"});
 #line 12
  testRunner.When("I fill in filtering fields", ((string)(null)), table1, "When ");
 #line hidden
-#line 16
+#line 17
  testRunner.And("I click on \'Пошук\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -149,7 +154,12 @@ this.ScenarioInitialize(scenarioInfo);
                             "6",
                             "2016",
                             "2019"});
-#line 17
+                table2.AddRow(new string[] {
+                            "Audi",
+                            "A5",
+                            "2012",
+                            "2018"});
+#line 18
  testRunner.Then("I see searching result page", ((string)(null)), table2, "Then ");
 #line hidden
             }

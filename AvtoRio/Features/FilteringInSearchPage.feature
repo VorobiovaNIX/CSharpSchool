@@ -13,8 +13,10 @@ Scenario: Verifying that filtering by Brand, model and year works as expected
 	| Brand | Model | Start Year | End Year |
 	| BMW   | M4    | 2013       | 2017     |
 	| Mazda | 6     | 2016       | 2019     |
+	| Audi  | A5    | 2012       | 2018     |
 	And I click on 'Пошук' button
 	Then I see searching result page
 	| Brand | Model | Start Year | End Year |
 	| BMW   | M4    | 2013       | 2017     |
 	| Mazda | 6     | 2016       | 2019     |
+	| Audi  | A5    | 2012       | 2018     |
