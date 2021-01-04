@@ -5,8 +5,8 @@
 
 Scenario Outline: Register user and check if the user cannot sign Up with already existing phone number
 	Given I go to the web page 'https://auto.ria.com/'
-	And the web page is opened 'Автобазар №1. Купити і продати авто легко'
-	Then I click the 'Увійти в кабінет' link 
+	Then the web page is opened 'Автобазар №1. Купити і продати авто легко'
+	And I click the 'Увійти в кабінет' link 
 	And I click the 'Зареєструватися на AUTO.RIA' link 
 	When I enter <UserFirstName>, <UserLastName> and <PhoneNumber>
 	And I click on 'Продовжити' button

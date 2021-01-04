@@ -12,7 +12,7 @@ namespace AvtoRio
     {
         public static IWebDriver driver = new ChromeDriver();
 
-        public static IWebElement button = driver.FindElement(By.XPath($"//*[@id='mainSearchForm']//span[text()='Розширений пошук']"));
+        public static string searchButton = "//*[@id='mainSearchForm']//span[text()='Розширений пошук']";
 
 
     }
