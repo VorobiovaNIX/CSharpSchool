@@ -67,7 +67,66 @@ namespace AvtoRio.StepDefinitions
             SelectElement selectEndYear = new SelectElement(driver.FindElement(By.XPath("//div/select[@id='at_year-to']")));
             selectEndYear.SelectByText(endYearCar);
 
+            ScenarioContext.Current["InfoForNextStep"] = "Step 1 Passed";
+            Console.WriteLine(ScenarioContext.Current["InfoForNextStep"].ToString());
 
+            List<CarDetails> carDetails = new List<CarDetails>()
+            {
+                new CarDetails()
+                {
+                    Brand = "BMW",
+                    Model ="M5",
+                    StartYear =2000,
+                    EndYear =2005
+
+                },
+                new CarDetails()
+                {
+                    Brand = "BMW",
+                    Model ="435",
+                    StartYear =2015,
+                    EndYear =2019
+
+                },
+                new CarDetails()
+                {
+                    Brand = "BMW",
+                    Model ="428",
+                    StartYear =2015,
+                    EndYear =2019
+
+                },
+                new CarDetails()
+                {
+                    Brand = "BMW",
+                    Model ="320",
+                    StartYear =1994,
+                    EndYear =2005
+                },
+                new CarDetails()
+                {
+                    Brand = "Ford",
+                    Model ="Focus",
+                    StartYear =2015,
+                    EndYear =2019
+                }
+            };
+
+            //Save the value in ScenarioContext
+            ScenarioContext.Current.Add("CarDetails", carDetails);
+
+            //Get the value out from ScenarioContext
+            var carList = ScenarioContext.Current.Get<IEnumerable<CarDetails>>("CarDetails");
+
+            foreach (CarDetails car in carList)
+            {
+                Console.WriteLine("The car brand is " + car.Brand);
+                Console.WriteLine("The car model is "+car.Model);
+                Console.WriteLine("The car Start year is " + car.StartYear);
+                Console.WriteLine("The car End Year is " + car.EndYear);
+            }
+            Console.WriteLine(ScenarioContext.Current.Count);
+            Console.WriteLine(ScenarioContext.Current.CurrentScenarioBlock);
         }
 
         [When(@"I click on Пошук button")]
