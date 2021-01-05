@@ -78,7 +78,7 @@ namespace AvtoRio.Features
         [NUnit.Framework.DescriptionAttribute("Register user and check if the user cannot sign Up with already existing phone nu" +
             "mber")]
         [NUnit.Framework.TestCaseAttribute("TestQA", "Test", "+380668235015", "Номер вже зареєстрований", null)]
-        [NUnit.Framework.TestCaseAttribute("NewUser", "UserQA", "111111", "\"111111\" - невірний мобільний номер телефону", null)]
+        [NUnit.Framework.TestCaseAttribute("NewUser", "UserQA", "+111111", "\"+111111\" - невірний мобільний номер телефону", null)]
         public virtual void RegisterUserAndCheckIfTheUserCannotSignUpWithAlreadyExistingPhoneNumber(string userFirstName, string userLastName, string phoneNumber, string result, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the web page is opened \'Автобазар №1. Купити і продати авто легко\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.And("I click the \'Увійти в кабінет\' link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click the Увійти в кабінет link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
  testRunner.And("I click the \'Зареєструватися на AUTO.RIA\' link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -125,10 +125,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("I enter {0}, {1} and {2}", userFirstName, userLastName, phoneNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.And("I click on \'Продовжити\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on \'Продовжити\' button on SignUp form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.Then(string.Format("I see {0} message", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I should see {0} message", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

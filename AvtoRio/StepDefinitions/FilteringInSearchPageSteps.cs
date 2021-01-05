@@ -12,12 +12,13 @@ namespace AvtoRio.StepDefinitions
     [Binding]
     public class FilteringInSearchPageSteps: BasePage
     {
-        IWebDriver driver;
+        //IWebDriver driver;
         [Given(@"I go to the web page '(.*)'")]
         public void GivenIGoToTheWebPage(string webpage)
         {
-            driver = new ChromeDriver();
+            //driver = new ChromeDriver();
             driver.Navigate().GoToUrl(webpage);
+            driver.Manage().Window.Maximize();
         }
 
         [Then(@"the web page is opened '(.*)'")]
@@ -37,7 +38,7 @@ namespace AvtoRio.StepDefinitions
         public void WhenIFillInFilteringFields(Table table)
         {
             string brandCar = table.Rows[0]["Brand"];
-            driver.FindElement(By.XPath("//div[@id='autocomplete-brand-0']/label")).Click();
+            driver.FindElement(By.XPath("//div[@id='autocomplete-brand-0']/label"),3).Click();
 
             //CarDetails details = table.CreateInstance<CarDetails>();
             // driver.FindElement(By.XPath("//div[@id='autocomplete-brand-0']/input")).SendKeys(details.Brand);
@@ -59,7 +60,7 @@ namespace AvtoRio.StepDefinitions
             driver.FindElement(By.XPath($"//ul[contains(@class,'autocomplete-select check_list')]/li/a[text()='{modelCar}']")).Click();
 
             string startYearCar = table.Rows[0]["StartYear"];
-            SelectElement selectStartYear = new SelectElement(driver.FindElement(By.XPath("//div/select[@id='at_year-from']")));
+            SelectElement selectStartYear = new SelectElement(driver.FindElement(By.XPath("//div/select[@id='at_year-from']"),5));
             selectStartYear.SelectByText(startYearCar);
 
             string endYearCar = table.Rows[0]["EndYear"];
