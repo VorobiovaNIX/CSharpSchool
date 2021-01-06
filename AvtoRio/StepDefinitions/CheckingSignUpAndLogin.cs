@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace AvtoRio.StepDefinitions
 {
     [Binding]
-    public class CheckingSignUpWithInvalidPhoneNumberSteps : BasePage
+    public class CheckingSignUpAndLogin : BasePage
     {
         [Then(@"I click the Увійти в кабінет link")]
         public void ThenIClickTheУвійтиВКабінетLink()
@@ -25,6 +25,7 @@ namespace AvtoRio.StepDefinitions
         }
 
         [When(@"I enter (.*), (.*) and (.*)")]
+        [Scope(Tag = "SignUp")]
         public void WhenIEnterValues(string userFirstName, string userLastName, string phoneNumber)
         {
             switchToFrameByName("login_frame");
@@ -35,7 +36,8 @@ namespace AvtoRio.StepDefinitions
 
         }
 
-        [When(@"I click on '(.*)' button on SignUp form")]
+        [When(@"I click on '(.*)' button")]
+        [Scope(Tag = "SignUp")]
         public void WhenIClickOnButtonOnSignUpForm(string buttonName)
         {
             switchToFrameByXPath("//iframe[@id='login_frame']");
@@ -45,12 +47,30 @@ namespace AvtoRio.StepDefinitions
 
 
         [Then(@"I should see (.*) message")]
+        [Scope(Tag = "SignUp")]
         public void ThenISeeMessage(string result)
         {
             switchToFrameByName("login_frame");
             string errorMessage = driver.FindElement(By.XPath("//div[@class='login-rows']/p[@class='error']"),2).Text;
-            Assert.That(errorMessage.Contains(result));
+                Assert.That(errorMessage.Contains(result));   
         }
+
+        
+
+        [When(@"I enter (.*) and (.*)")]
+        [Scope(Tag = "Login")]
+        public void WhenIEnterPhoneEmailAndPassword(string PhoneOrEmail, string Password)
+        {
+            
+        }
+
+        [When(@"I click on '(.*)' button")]
+        [Scope(Tag = "Login")] //can be used also Scenario, Tag and Feature etc.
+        public void WhenIClickOnButtonOnLoginForm(string buttonName)
+        {
+            
+        }
+
 
     }
 }

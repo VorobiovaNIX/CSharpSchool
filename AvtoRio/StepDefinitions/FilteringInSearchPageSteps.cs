@@ -207,5 +207,21 @@ namespace AvtoRio.StepDefinitions
             selectProducingCountry.SelectByText(Car.ProducingCountry);
         }
 
+        [Then(@"I should see (.*) message")]
+        [Scope(Tag = "Login")]
+        public void ThenISeeMessage(string result)
+        {
+            switchToFrameByName("login_frame");
+            string errorMessage = driver.FindElement(By.XPath("//p[@class='error login-link']"), 2).Text;
+            try
+            {
+                Assert.That(errorMessage.Contains(result));
+            }
+            catch (Exception)
+            {
+                Assert.That(driver.FindElement(By.XPath("//main[@class='app-content']/h1")).Text.Contains(result));
+            }
+        }
+
     }
 }

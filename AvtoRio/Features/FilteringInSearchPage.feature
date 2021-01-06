@@ -3,7 +3,7 @@
 	As a math idiot
 	I want to be told the sum of two numbers
 
-@SmokeTest
+@SmokeTest @Filtering 
 Scenario: Verifying that filtering by Brand, model and year works as expected 
 	Given I go to the web page 'https://auto.ria.com/'
 	Then the web page is opened 'Автобазар №1. Купити і продати авто легко'

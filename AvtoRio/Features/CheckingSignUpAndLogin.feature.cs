@@ -20,23 +20,23 @@ namespace AvtoRio.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FilteringInSearchPage")]
-    public partial class FilteringInSearchPageFeature
+    [NUnit.Framework.DescriptionAttribute("CheckingSignUpAndLogin")]
+    public partial class CheckingSignUpAndLoginFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "FilteringInSearchPage.feature"
+#line 1 "CheckingSignUpAndLogin.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "FilteringInSearchPage", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                    "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CheckingSignUpAndLogin", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
+                    "f two numbers.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,16 +75,27 @@ namespace AvtoRio.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verifying that filtering by Brand, model and year works as expected")]
-        [NUnit.Framework.CategoryAttribute("SmokeTest")]
-        [NUnit.Framework.CategoryAttribute("Filtering")]
-        public virtual void VerifyingThatFilteringByBrandModelAndYearWorksAsExpected()
+        [NUnit.Framework.DescriptionAttribute("Register user and check if the user cannot sign Up with already existing phone nu" +
+            "mber")]
+        [NUnit.Framework.CategoryAttribute("SignUp")]
+        [NUnit.Framework.TestCaseAttribute("TestQA", "Test", "+380668235015", "Номер вже зареєстрований", null)]
+        [NUnit.Framework.TestCaseAttribute("NewUser", "UserQA", "+111111", "\"+111111\" - невірний мобільний номер телефону", null)]
+        public virtual void RegisterUserAndCheckIfTheUserCannotSignUpWithAlreadyExistingPhoneNumber(string userFirstName, string userLastName, string phoneNumber, string result, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "SmokeTest",
-                    "Filtering"};
+            string[] @__tags = new string[] {
+                    "SignUp"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verifying that filtering by Brand, model and year works as expected", null, tagsOfScenario, argumentsOfScenario);
+            argumentsOfScenario.Add("UserFirstName", userFirstName);
+            argumentsOfScenario.Add("UserLastName", userLastName);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("Result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register user and check if the user cannot sign Up with already existing phone nu" +
+                    "mber", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,74 +123,45 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the web page is opened \'Автобазар №1. Купити і продати авто легко\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.When("I click on \'Розширений пошук\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I click the Увійти в кабінет link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("the web page is opened \'Пошук автомобілів в Україні.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I click the \'Зареєструватися на AUTO.RIA\' link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Brand",
-                            "Model",
-                            "StartYear",
-                            "EndYear"});
-                table1.AddRow(new string[] {
-                            "BMW",
-                            "M4",
-                            "2013",
-                            "2017"});
-                table1.AddRow(new string[] {
-                            "Mazda",
-                            "6",
-                            "2016",
-                            "2019"});
-                table1.AddRow(new string[] {
-                            "Audi",
-                            "A5",
-                            "2012",
-                            "2018"});
 #line 12
- testRunner.When("I fill in filtering fields by Brand, model and year", ((string)(null)), table1, "When ");
+ testRunner.When(string.Format("I enter {0}, {1} and {2}", userFirstName, userLastName, phoneNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
- testRunner.And("I click on Пошук button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("I click on \'Продовжити\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Brand",
-                            "Model",
-                            "StartYear",
-                            "EndYear"});
-                table2.AddRow(new string[] {
-                            "BMW",
-                            "M4",
-                            "2013",
-                            "2017"});
-                table2.AddRow(new string[] {
-                            "Mazda",
-                            "6",
-                            "2016",
-                            "2019"});
-                table2.AddRow(new string[] {
-                            "Audi",
-                            "A5",
-                            "2012",
-                            "2018"});
-#line 18
- testRunner.Then("I see searching result page by Brand, model and year", ((string)(null)), table2, "Then ");
+#line 14
+ testRunner.Then(string.Format("I should see {0} message", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verifying that filtering by Type of vehicle, Body type and Producing country work" +
-            "s as expected")]
-        public virtual void VerifyingThatFilteringByTypeOfVehicleBodyTypeAndProducingCountryWorksAsExpected()
+        [NUnit.Framework.DescriptionAttribute("User can login with valid credentials")]
+        [NUnit.Framework.CategoryAttribute("Login")]
+        [NUnit.Framework.TestCaseAttribute("vorobbyova@gmail.com", "qwerty", "Особистий кабінет", null)]
+        [NUnit.Framework.TestCaseAttribute("+380668235015", "qwerty", "Особистий кабінет", null)]
+        [NUnit.Framework.TestCaseAttribute("vorobbyova@gmail.com", "qwertyyy", "Невірний логін або пароль", null)]
+        public virtual void UserCanLoginWithValidCredentials(string phoneOrEmail, string password, string result, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] @__tags = new string[] {
+                    "Login"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verifying that filtering by Type of vehicle, Body type and Producing country work" +
-                    "s as expected", null, tagsOfScenario, argumentsOfScenario);
-#line 24
+            argumentsOfScenario.Add("PhoneOrEmail", phoneOrEmail);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("Result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can login with valid credentials", null, tagsOfScenario, argumentsOfScenario);
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -199,38 +181,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 22
  testRunner.Given("I go to the web page \'https://auto.ria.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 26
+#line 23
  testRunner.Then("the web page is opened \'Автобазар №1. Купити і продати авто легко\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 24
+ testRunner.And("I click the Увійти в кабінет link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.When(string.Format("I enter {0} and {1}", phoneOrEmail, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 26
+ testRunner.And("I click on \'Продовжити\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 27
- testRunner.When("I click on \'Розширений пошук\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 28
- testRunner.Then("the web page is opened \'Пошук автомобілів в Україні.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "TypeOfVehicle",
-                            "Body Type",
-                            "ProducingCountry"});
-                table3.AddRow(new string[] {
-                            "Легкові",
-                            "Седан",
-                            "Німеччина"});
-                table3.AddRow(new string[] {
-                            "Мото",
-                            "Гольф-кар",
-                            "Японія"});
-#line 29
- testRunner.When("I fill in filtering fields by Type of vehicle, Body type and Producing country", ((string)(null)), table3, "When ");
-#line hidden
-#line 33
- testRunner.And("I click on Пошук button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 34
- testRunner.Then("I should get the same value from Extended steps", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I should see {0} message", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
