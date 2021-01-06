@@ -136,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2012",
                             "2018"});
 #line 12
- testRunner.When("I fill in filtering fields", ((string)(null)), table1, "When ");
+ testRunner.When("I fill in filtering fields by Brand, model and year", ((string)(null)), table1, "When ");
 #line hidden
 #line 17
  testRunner.And("I click on Пошук button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -162,7 +162,73 @@ this.ScenarioInitialize(scenarioInfo);
                             "2012",
                             "2018"});
 #line 18
- testRunner.Then("I see searching result page", ((string)(null)), table2, "Then ");
+ testRunner.Then("I see searching result page by Brand, model and year", ((string)(null)), table2, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verifying that filtering by Type of vehicle, Body type and Producing country work" +
+            "s as expected")]
+        public virtual void VerifyingThatFilteringByTypeOfVehicleBodyTypeAndProducingCountryWorksAsExpected()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verifying that filtering by Type of vehicle, Body type and Producing country work" +
+                    "s as expected", null, tagsOfScenario, argumentsOfScenario);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 25
+ testRunner.Given("I go to the web page \'https://auto.ria.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 26
+ testRunner.Then("the web page is opened \'Автобазар №1. Купити і продати авто легко\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 27
+ testRunner.When("I click on \'Розширений пошук\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+ testRunner.Then("the web page is opened \'Пошук автомобілів в Україні.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "TypeOfVehicle",
+                            "Body Type",
+                            "ProducingCountry"});
+                table3.AddRow(new string[] {
+                            "Легкові",
+                            "Седан",
+                            "Німеччина"});
+                table3.AddRow(new string[] {
+                            "Мото",
+                            "Гольф-кар",
+                            "Японія"});
+#line 29
+ testRunner.When("I fill in filtering fields by Type of vehicle, Body type and Producing country", ((string)(null)), table3, "When ");
+#line hidden
+#line 33
+ testRunner.And("I click on Пошук button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 34
+ testRunner.Then("I should get the same value from Extended steps", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

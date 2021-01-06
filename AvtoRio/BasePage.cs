@@ -16,7 +16,15 @@ namespace AvtoRio
 
         //public static string searchButton = "//*[@id='mainSearchForm']//span[text()='Розширений пошук']";
 
-       public WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+
+        public static void wait(int seconds)
+        {
+            //public WebDriverWait i = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
+
+        }
+
+
 
         public static void switchToFrameByXPath(string xpath)
         {

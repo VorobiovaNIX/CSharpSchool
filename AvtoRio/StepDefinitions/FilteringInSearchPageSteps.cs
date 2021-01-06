@@ -13,6 +13,14 @@ namespace AvtoRio.StepDefinitions
     public class FilteringInSearchPageSteps: BasePage
     {
         //IWebDriver driver;
+
+        public readonly CarDetails Car;
+
+        public FilteringInSearchPageSteps(CarDetails car)
+        {
+            this.Car = car;
+        }
+
         [Given(@"I go to the web page '(.*)'")]
         public void GivenIGoToTheWebPage(string webpage)
         {
@@ -34,7 +42,7 @@ namespace AvtoRio.StepDefinitions
             button.Click();
         }
         
-        [When(@"I fill in filtering fields")]
+        [When(@"I fill in filtering fields by Brand, model and year")]
         public void WhenIFillInFilteringFields(Table table)
         {
             string brandCar = table.Rows[0]["Brand"];
@@ -43,7 +51,10 @@ namespace AvtoRio.StepDefinitions
             //CarDetails details = table.CreateInstance<CarDetails>();
             // driver.FindElement(By.XPath("//div[@id='autocomplete-brand-0']/input")).SendKeys(details.Brand);
 
-            //var details = table.CreateSet<CarDetails>();
+            //IEnumerable<CarDetails> details = table.CreateSet<CarDetails>();
+            //string[] row = { "Audi", "A5", "2012", "2018" };
+            //table.AddRow(row);
+
             //foreach (CarDetails car in details)
             //{
             //    Console.WriteLine(car.Brand);
@@ -51,13 +62,16 @@ namespace AvtoRio.StepDefinitions
             //    Console.WriteLine(car.StartYear);
             //    Console.WriteLine(car.EndYear);
             //}
+
+            var details = table.CreateDynamicSet();
+            details.GetEnumerator();
             
             driver.FindElement(By.XPath($"(//ul[@class='unstyle scrollbar autocomplete-select']/li/a[text()='{brandCar}'])[1]")).Click();
 
             string modelCar = table.Rows[0]["Model"];
             driver.FindElement(By.XPath("//label[@data-text='Оберіть модель']")).Click();
             //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds());
-            driver.FindElement(By.XPath($"//ul[contains(@class,'autocomplete-select check_list')]/li/a[text()='{modelCar}']")).Click();
+            driver.FindElement(By.XPath($"//ul[contains(@class,'autocomplete-select check_list')]/li/a[text()='{modelCar}']"),5).Click();
 
             string startYearCar = table.Rows[0]["StartYear"];
             SelectElement selectStartYear = new SelectElement(driver.FindElement(By.XPath("//div/select[@id='at_year-from']"),5));
@@ -137,7 +151,7 @@ namespace AvtoRio.StepDefinitions
         }
 
 
-        [Then(@"I see searching result page")]
+        [Then(@"I see searching result page by Brand, model and year")]
         public void ThenISeeSearchingResultPage(Table table)
         {
             string brandCar = table.Rows[0]["Brand"];
@@ -160,5 +174,38 @@ namespace AvtoRio.StepDefinitions
 
             }
         }
+
+        [When(@"I fill in filtering fields by Type of vehicle, Body type and Producing country")]
+        public void WhenIFillInFilteringFieldsByTypeOfVehicleBodyTypeAndProducingCountry(Table table)
+        {
+            var data = table.CreateDynamicSet();
+            foreach (var item in data)
+            {
+                Car.TypeOfVehicle = (string)item.TypeOfVehicle;
+                Car.BodyType = (string)item.BodyType;
+                Car.ProducingCountry = (string)item.ProducingCountry;
+            }
+            Console.WriteLine(Car.TypeOfVehicle);
+            Console.WriteLine(Car.BodyType);
+            Console.WriteLine(Car.ProducingCountry);
+
+            SelectElement selectTypeOfVehicle = new SelectElement(driver.FindElement(By.XPath("//select[@aria-label='Тип транспорту']")));
+            selectTypeOfVehicle.SelectByText(Car.TypeOfVehicle);
+
+            try
+            {
+                driver.FindElement(By.XPath($"//div[@class='indent']//div[@class='boxed checked-list']/label[text()=' {Car.BodyType}']")).Click();
+            }
+            catch (NoSuchElementException)
+            {
+                driver.FindElement(By.XPath("//label[text()='Інші типи кузову']"),5).Click();
+                wait(10);
+                driver.FindElement(By.XPath($"//div[@class='indent']//div[@class='boxed checked-list']/label[text()=' {Car.BodyType}']"),20).Click(); 
+            }
+
+            SelectElement selectProducingCountry = new SelectElement(driver.FindElement(By.XPath("//select[@id='at_country']")));
+            selectProducingCountry.SelectByText(Car.ProducingCountry);
+        }
+
     }
 }
