@@ -59,16 +59,22 @@ namespace AvtoRio.StepDefinitions
 
         [When(@"I enter (.*) and (.*)")]
         [Scope(Tag = "Login")]
-        public void WhenIEnterPhoneEmailAndPassword(string PhoneOrEmail, string Password)
+        public void WhenIEnterPhoneEmailAndPassword(string phoneOrEmail, string password)
         {
-            
+            switchToFrameByName("login_frame");
+            driver.FindElement(By.XPath("//input[@id='emailloginform-email']"), 10).SendKeys(phoneOrEmail);
+            driver.FindElement(By.XPath("//input[@id='emailloginform-password']")).SendKeys(password);
+            driver.SwitchTo().DefaultContent();
+
         }
 
         [When(@"I click on '(.*)' button")]
         [Scope(Tag = "Login")] //can be used also Scenario, Tag and Feature etc.
         public void WhenIClickOnButtonOnLoginForm(string buttonName)
         {
-            
+            switchToFrameByName("login_frame");
+            driver.FindElement(By.XPath("//div[@class='login-link']/button")).Click();
+            driver.SwitchTo().DefaultContent();
         }
 
 

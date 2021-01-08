@@ -142,12 +142,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User can login with valid credentials")]
+        [NUnit.Framework.DescriptionAttribute("User can login with valid and unvalid credentials")]
         [NUnit.Framework.CategoryAttribute("Login")]
         [NUnit.Framework.TestCaseAttribute("vorobbyova@gmail.com", "qwerty", "Особистий кабінет", null)]
         [NUnit.Framework.TestCaseAttribute("+380668235015", "qwerty", "Особистий кабінет", null)]
         [NUnit.Framework.TestCaseAttribute("vorobbyova@gmail.com", "qwertyyy", "Невірний логін або пароль", null)]
-        public virtual void UserCanLoginWithValidCredentials(string phoneOrEmail, string password, string result, string[] exampleTags)
+        public virtual void UserCanLoginWithValidAndUnvalidCredentials(string phoneOrEmail, string password, string result, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Login"};
@@ -160,7 +160,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("PhoneOrEmail", phoneOrEmail);
             argumentsOfScenario.Add("Password", password);
             argumentsOfScenario.Add("Result", result);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can login with valid credentials", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can login with valid and unvalid credentials", null, tagsOfScenario, argumentsOfScenario);
 #line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -194,7 +194,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("I enter {0} and {1}", phoneOrEmail, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 26
- testRunner.And("I click on \'Продовжити\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on \'Увійти\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 27
  testRunner.Then(string.Format("I should see {0} message", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

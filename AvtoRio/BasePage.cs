@@ -6,16 +6,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium.Support.UI;
+using System.Linq;
 
 namespace AvtoRio
 {
     public class BasePage
     {
 
-        public static IWebDriver driver = new ChromeDriver();
 
         //public static string searchButton = "//*[@id='mainSearchForm']//span[text()='Розширений пошук']";
-
+        public static IWebDriver driver = new ChromeDriver();
 
         public static void wait(int seconds)
         {
@@ -35,6 +35,8 @@ namespace AvtoRio
         {
             driver.SwitchTo().Frame(frameName);
         }
+
+        
     }
 
     public static class WebDriverExtensions
@@ -47,6 +49,13 @@ namespace AvtoRio
                 return wait.Until(drv => drv.FindElement(by));
             }
             return driver.FindElement(by);
+        }
+
+        public static string RemoveWhitespace(this string input)
+        {
+            return new string(input.ToCharArray()
+                .Where(c => !Char.IsWhiteSpace(c))
+                .ToArray());
         }
     }
 }

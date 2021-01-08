@@ -14,5 +14,10 @@ namespace AvtoRio.StepDefinitions
         public string TypeOfVehicle { get; set; }
         public string BodyType  { get; set; }
         public string ProducingCountry { get; set; }
+
+        public int StartPrice { get; set; }
+        public int EndPrice { get; set; }
+
+
     }
 }

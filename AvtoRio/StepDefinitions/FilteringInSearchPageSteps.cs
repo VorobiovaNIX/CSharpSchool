@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -212,16 +213,84 @@ namespace AvtoRio.StepDefinitions
         public void ThenISeeMessage(string result)
         {
             switchToFrameByName("login_frame");
-            string errorMessage = driver.FindElement(By.XPath("//p[@class='error login-link']"), 2).Text;
             try
             {
-                Assert.That(errorMessage.Contains(result));
+                Assert.That(driver.FindElement(By.XPath("//p[@class='error login-link']"), 2).Text.Contains(result));
             }
-            catch (Exception)
+            catch (NoSuchElementException)
             {
                 Assert.That(driver.FindElement(By.XPath("//main[@class='app-content']/h1")).Text.Contains(result));
             }
         }
+
+        [When(@"I fill in filtering fields by price")]
+        public void WhenIFillInFilteringFieldsByPrice(Table table)
+        {
+            var data = table.CreateDynamicSet();
+            foreach (var item in data)
+            {
+                Car.StartPrice = (int)item.StartPrice;
+                Car.EndPrice = (int)item.EndPrice;
+            }
+            Console.WriteLine(Car.StartPrice);
+            Console.WriteLine(Car.EndPrice);
+
+            driver.FindElement(By.XPath("//div[@class='item-two-el']/input[@id='at_price-from']"),3).SendKeys(Car.StartPrice.ToString());
+            driver.FindElement(By.XPath("//div[@class='item-two-el']/input[@id='at_price-to']")).SendKeys(Car.EndPrice.ToString());
+
+        }
+
+        [Then(@"I see last date in data is (.* days from current date)")]
+        public void ThenISeeLastDateInDataIsDaysFromCurrentDate(DateTime correctDateTime)
+        {
+            Console.WriteLine(correctDateTime);  
+        }
+
+        [When(@"I sorting list by '(.*)'")]
+        public void WhenISortingListBy(string p0)
+        {
+            
+        }
+
+        [Then(@"I see sorted list by '(.*)'")]
+        public void ThenISeeSortedListBy(string p0)
+        {
+           
+        }
+
+        [Then(@"list items are sorted correctly")]
+        public void ThenListItemsAreSortedCorrectly()
+        {
+            
+        }
+
+        [When(@"I fill in filtering fields by Technical characteristics")]
+        public void WhenIFillInFilteringFieldsByTechnicalCharacteristics(Table characteristics)
+        {
+            /*The CreateDynamicInstance() method will create the dynamic object which will hold
+             * the Table values which are passed as an Argument to the step. It also will use the appropriate casting or conversion to 
+             * turn your string into the appropriate type.*/
+            dynamic characteristic = characteristics.CreateDynamicInstance(); 
+
+            string fuel = characteristic.Fuel;
+            string transmission = characteristic.Transmission;
+            string driveType = characteristic.DriveType;
+            double volumeFrom = characteristic.VolumeFrom;
+            double volumeTo = characteristic.VolumeTo;
+            int horsePowerFrom = characteristic.HorsePowerFrom;
+            int horsePowerTo = characteristic.HorsePowerTo;
+
+            /*The CreateDynamicSet() method will create the dynamic object which will hold
+             * the Table values which are passed as an Argument to the step. This creates a IEnumerable<dynamic>
+             * for a several rows. The headers are the property names as before.*/
+            IEnumerable <dynamic> characteristicList = characteristics.CreateDynamicSet();
+
+            var characteris = characteristicList.First();
+
+
+        }
+
+
 
     }
 }

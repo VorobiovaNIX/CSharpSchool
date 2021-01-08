@@ -35,6 +35,24 @@ namespace AvtoRio.StepDefinitions
 
         }
 
+        [Then(@"I see searching result page by price")]
+        public void ThenISeeSearchingResultPageByPrice()
+        {
+            Console.WriteLine(Car.StartPrice);
+            Console.WriteLine(Car.EndPrice);
+
+            var carTitles = driver.FindElements(By.XPath(".//div[@class='content']//span[@class='bold green size22'][1]"));
+            foreach (var item in carTitles)
+            {
+                int actualPrice = Int32.Parse(WebDriverExtensions.RemoveWhitespace(item.Text));
+                Assert.GreaterOrEqual(actualPrice, Car.StartPrice,
+                    "Start price that set up on search page doesn't according to price on the list of cars");
+                Assert.LessOrEqual(actualPrice, Car.EndPrice,
+                    "End price that set up on search page doesn't according to price on the list of cars");
+            }
+
+        }
+
 
     }
 }

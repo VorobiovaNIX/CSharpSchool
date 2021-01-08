@@ -11,6 +11,11 @@ namespace AvtoRio
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
+        [BeforeTestRun]
+        public static void BeforeRunTest() { 
+
+        }
+
         [BeforeFeature]
         public static void BeforeFeature()
         {

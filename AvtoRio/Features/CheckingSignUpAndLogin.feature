@@ -18,12 +18,12 @@ Examples:
 	| NewUser       | UserQA       | +111111        | "+111111" - невірний мобільний номер телефону |
 
 	@Login
-Scenario Outline: User can login with valid credentials
+Scenario Outline: User can login with valid and unvalid credentials
 	Given I go to the web page 'https://auto.ria.com/'
 	Then the web page is opened 'Автобазар №1. Купити і продати авто легко'
 	And I click the Увійти в кабінет link
 	When I enter <PhoneOrEmail> and <Password>
-	And I click on 'Продовжити' button
+	And I click on 'Увійти' button
 	Then I should see <Result> message
 Examples: 
 	| PhoneOrEmail         | Password | Result            |
