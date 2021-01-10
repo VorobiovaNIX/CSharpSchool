@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using AvtoRio.Utils;
+using System.Data;
 
 namespace AvtoRio.StepDefinitions
 {
@@ -49,10 +51,12 @@ namespace AvtoRio.StepDefinitions
             string brandCar = table.Rows[0]["Brand"];
             driver.FindElement(By.XPath("//div[@id='autocomplete-brand-0']/label"),3).Click();
 
-            //CarDetails details = table.CreateInstance<CarDetails>();
-            // driver.FindElement(By.XPath("//div[@id='autocomplete-brand-0']/input")).SendKeys(details.Brand);
+            CarDetails details = table.CreateInstance<CarDetails>(); //Only Single row of Data can be used with this. 
+            Console.WriteLine(details.Brand);
+            Console.WriteLine(details.Model);
 
-            //IEnumerable<CarDetails> details = table.CreateSet<CarDetails>();
+            //IEnumerable<CarDetails> details = table.CreateSet<CarDetails>(); - Single row of Data or Multiple rows of Data can used here.
+            //CreateSet<T> is capable of handling multiple data sets.
             //string[] row = { "Audi", "A5", "2012", "2018" };
             //table.AddRow(row);
 
@@ -64,9 +68,9 @@ namespace AvtoRio.StepDefinitions
             //    Console.WriteLine(car.EndYear);
             //}
 
-            var details = table.CreateDynamicSet();
-            details.GetEnumerator();
-            
+            //var details = table.CreateDynamicSet();
+            //details.GetEnumerator();
+
             driver.FindElement(By.XPath($"(//ul[@class='unstyle scrollbar autocomplete-select']/li/a[text()='{brandCar}'])[1]")).Click();
 
             string modelCar = table.Rows[0]["Model"];
@@ -160,6 +164,16 @@ namespace AvtoRio.StepDefinitions
             string startYearCar = table.Rows[0]["StartYear"];
             string endYearCar = table.Rows[0]["EndYear"];
 
+            var dataTable = TableExtensions.ToDataTable(table);
+            foreach (DataRow row in dataTable.Rows)
+            {
+               Console.WriteLine(row.ItemArray[0].ToString());
+               Console.WriteLine(row.ItemArray[1].ToString());
+               Console.WriteLine(row.ItemArray[2].ToString());
+               Console.WriteLine(row.ItemArray[3].ToString());
+
+            }
+
             var carTitles = driver.FindElements(By.XPath(".//div[@class='item ticket-title']/a"));
             foreach (var car in carTitles)
             {
@@ -168,7 +182,6 @@ namespace AvtoRio.StepDefinitions
 
                 string[] wordsInTitle = car.Text.Split(' ');
                 int actualYearCar = int.Parse(wordsInTitle[wordsInTitle.Length-1]);
-                Console.WriteLine(actualYearCar);
                 if (actualYearCar > int.Parse(endYearCar) || actualYearCar < int.Parse(startYearCar))
                     throw new AssertionException("The actual year of the car is search result does not according to set filtering");
 
@@ -235,6 +248,10 @@ namespace AvtoRio.StepDefinitions
             Console.WriteLine(Car.StartPrice);
             Console.WriteLine(Car.EndPrice);
 
+            //var dictionary = TableExtensions.ToDictionary(table);
+            //var test = dictionary["StartPrice"];
+
+
             driver.FindElement(By.XPath("//div[@class='item-two-el']/input[@id='at_price-from']"),3).SendKeys(Car.StartPrice.ToString());
             driver.FindElement(By.XPath("//div[@class='item-two-el']/input[@id='at_price-to']")).SendKeys(Car.EndPrice.ToString());
 
@@ -283,9 +300,9 @@ namespace AvtoRio.StepDefinitions
             /*The CreateDynamicSet() method will create the dynamic object which will hold
              * the Table values which are passed as an Argument to the step. This creates a IEnumerable<dynamic>
              * for a several rows. The headers are the property names as before.*/
-            IEnumerable <dynamic> characteristicList = characteristics.CreateDynamicSet();
+            //IEnumerable <dynamic> characteristicList = characteristics.CreateDynamicSet();
 
-            var characteris = characteristicList.First();
+            //var characteris = characteristicList.First();
 
 
         }

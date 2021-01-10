@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace AvtoRio
+namespace AvtoRio.Utils
 {
     [Binding]
     public class CustomStepTransformer

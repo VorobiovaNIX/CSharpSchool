@@ -1,7 +1,5 @@
 ﻿Feature: FilteringInSearchPage
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	This feature will test filtering and sorting list of cars. Also, it tests searching functionality
 
 @SmokeTest @Filtering 
 Scenario: Verifying that filtering by Brand, model and year works as expected 
@@ -42,7 +40,14 @@ Scenario: Verifying sorting list of cars on the result searching web page
 	Then the web page is opened 'Пошук автомобілів в Україні.'
 	When I fill in filtering fields by price
 	| StartPrice | EndPrice |
-	| 5000       | 7000      |
+	| 5000       | 7000     |
+	#| Key        | Value |  Vertical Data that use for Dictionary Key-Value pair - Transform Table into Dictionary
+	#| StartPrice | 5000  |
+	#| EndPrice   | 7000  |
+
+	# | Field    | Value  | Parameterizing Data in Vertical format. Only Single row of Data can be used with this -  CreateInstance in SpecFlow Table 
+	# | StartPrice | 5000 |
+	# | EndPrice | 7000   |
 	And I click on Пошук button
 	Then I see last date in data is 5 days from current date
 	And I see searching result page by price

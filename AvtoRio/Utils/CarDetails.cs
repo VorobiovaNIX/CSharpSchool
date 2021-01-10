@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AvtoRio.StepDefinitions
+namespace AvtoRio.Utils
 {
     public class CarDetails
     {
