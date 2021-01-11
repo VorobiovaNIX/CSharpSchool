@@ -8,6 +8,10 @@ namespace AvtoRio.StepDefinitions
     [Binding]
     public class CheckingSignUpAndLogin : BasePage
     {
+        //Three private fields to store the data across different Steps
+        private string firstName; 
+        private string lastName;
+
         [Then(@"I click the Увійти в кабінет link")]
         public void ThenIClickTheУвійтиВКабінетLink()
         {
@@ -33,7 +37,8 @@ namespace AvtoRio.StepDefinitions
             driver.FindElement(By.XPath("//input[@id='registrationform-second_name']")).SendKeys(userLastName);
             driver.FindElement(By.XPath("//input[@id='registrationform-email']")).SendKeys(phoneNumber);
             driver.SwitchTo().DefaultContent();
-
+            firstName = userFirstName; // Using a Private Field via ScenarioContext Current in SpecFlow
+            lastName = userLastName;
         }
 
         [When(@"I click on '(.*)' button")]
@@ -52,7 +57,9 @@ namespace AvtoRio.StepDefinitions
         {
             switchToFrameByName("login_frame");
             string errorMessage = driver.FindElement(By.XPath("//div[@class='login-rows']/p[@class='error']"),2).Text;
-                Assert.That(errorMessage.Contains(result));   
+                Assert.That(errorMessage.Contains(result));
+
+            Console.WriteLine($"The first name and lat name are: {firstName} and {lastName}");
         }
 
         

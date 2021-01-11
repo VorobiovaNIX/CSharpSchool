@@ -30,6 +30,7 @@ Scenario: Verifying that filtering by Type of vehicle, Body type and Producing c
 	| Легкові       | Седан     | Німеччина        |
 	| Мото          | Гольф-кар | Японія           |
 	And I click on Пошук button
+	And I open '1' item in list of cars 
 	Then I should get the same value from Extended steps
 
 	@Sorting
@@ -63,9 +64,26 @@ Scenario: Verifying that filtering by Technical characteristics works as expecte
 	When I click on 'Розширений пошук' button
 	Then the web page is opened 'Пошук автомобілів в Україні.'
 	When I fill in filtering fields by Technical characteristics
-	| Fuel   | Transmission     | DriveType | VolumeFrom | VolumeTo | HorsePowerFrom | HorsePowerTo | MileageInThousandKmFrom | MileageInThousandKmTo |
-	| Бензин | Ручна / Механіка | Передній  | 1          | 3        | 100            | 200          | 20                      | 80                    |
-	| Бензин | Автомат          | Передній  | 2          | 3        | 80            | 200          | 20                      | 100                   |
-
+	| Fuel   | Transmission     |  VolumeFrom | VolumeTo | HorsePowerFrom | HorsePowerTo | MileageInThousandKmFrom | MileageInThousandKmTo |
+	| Бензин | Ручна / Механіка |  1          | 3        | 100            | 200          | 20                      | 80                    |
+	| Бензин | Автомат          |  2          | 3        | 80             | 200          | 20                      | 100                   |
 	And I click on Пошук button
 	Then I see searching result page by Technical characteristics
+	| Fuel   | Transmission      | VolumeFrom | VolumeTo | HorsePowerFrom | HorsePowerTo | MileageInThousandKmFrom | MileageInThousandKmTo |
+	| Бензин | Ручная / Механика | 1          | 3        | 100            | 200          | 20                      | 80                    |
+	| Бензин | Автомат          |  2          | 3        | 80             | 200          | 20                      | 100                   |
+
+	@Filtering 
+Scenario: Verifying that filtering by Number of doors and Number of seats and  works as expected 
+	Given I go to the web page 'https://auto.ria.com/'
+	Then the web page is opened 'Автобазар №1. Купити і продати авто легко'
+	When I click on 'Розширений пошук' button
+	Then the web page is opened 'Пошук автомобілів в Україні.'
+	When I fill in filtering fields by Number of doors and  Number of seats
+	| NumberOfDoorsFrom | NumberOfDoorsTo | NumberOfSeatsFrom | NumberOfSeatsTo |
+	| 2                 | 5               | 2                 | 5               |
+	And I click on Пошук button
+	And I open '1' item in list of cars 
+	Then I see searching result page by Number of doors and Number of seats
+	| NumberOfDoorsFrom | NumberOfDoorsTo | NumberOfSeatsFrom | NumberOfSeatsTo |
+	| 2                 | 5               | 2                 | 5               |

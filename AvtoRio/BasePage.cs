@@ -17,6 +17,9 @@ namespace AvtoRio
         //public static string searchButton = "//*[@id='mainSearchForm']//span[text()='Розширений пошук']";
         public static IWebDriver driver = new ChromeDriver();
 
+        public IJavaScriptExecutor js = driver as IJavaScriptExecutor;
+
+
         public static void wait(int seconds)
         {
             //public WebDriverWait i = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
@@ -36,7 +39,10 @@ namespace AvtoRio
             driver.SwitchTo().Frame(frameName);
         }
 
-        
+        public void scrollToTheElement(IWebElement webElement)
+        {
+            js.ExecuteScript("arguments[0].scrollIntoView(true);", webElement);
+        }
     }
 
     public static class WebDriverExtensions

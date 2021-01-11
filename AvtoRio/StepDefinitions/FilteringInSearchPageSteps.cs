@@ -263,16 +263,44 @@ namespace AvtoRio.StepDefinitions
             Console.WriteLine(correctDateTime);  
         }
 
-        [When(@"I sorting list by '(.*)'")]
-        public void WhenISortingListBy(string p0)
+        [Then(@"I see searching result page by price")]
+        public void ThenISeeSearchingResultPageByPrice()
         {
+            Console.WriteLine(Car.StartPrice);
+            Console.WriteLine(Car.EndPrice);
+
+            var carTitles = driver.FindElements(By.XPath(".//div[@class='content']//span[@class='bold green size22'][1]"));
+            foreach (var item in carTitles)
+            {
+                int actualPrice = Int32.Parse(WebDriverExtensions.RemoveWhitespace(item.Text));
+                Assert.GreaterOrEqual(actualPrice, Car.StartPrice,
+                    "Start price that set up on search page doesn't according to price on the list of cars");
+                Assert.LessOrEqual(actualPrice, Car.EndPrice,
+                    "End price that set up on search page doesn't according to price on the list of cars");
+            }
+
+        }
+
+        [When(@"I sorting list by '(.*)'")]
+        public void WhenISortingListBy(string value)
+        {
+            driver.FindElement(By.XPath("//a[@id='sortCheckedElement']")).Click();
+
+            driver.FindElement(By.XPath($"//a[@id='sortCheckedElement']/following-sibling::span/a[text()='{value}']"),3).Click();
+
             
         }
 
         [Then(@"I see sorted list by '(.*)'")]
-        public void ThenISeeSortedListBy(string p0)
+        public void ThenISeeSortedListBy(string value)
         {
-           
+            Assert.AreEqual(driver.FindElement(By.XPath("//a[@id='sortCheckedElement']")).Text, value);
+
+            SelectElement sortingField = new SelectElement(driver.FindElement(By.XPath("//select[@id='leftFilterSortSelect']")));
+            string selectedValue = sortingField.AllSelectedOptions[0].Text;
+
+            Assert.AreEqual(selectedValue, value);
+
         }
 
         [Then(@"list items are sorted correctly")]
@@ -282,32 +310,105 @@ namespace AvtoRio.StepDefinitions
         }
 
         [When(@"I fill in filtering fields by Technical characteristics")]
-        public void WhenIFillInFilteringFieldsByTechnicalCharacteristics(Table characteristics)
+        public void WhenIFillInFilteringFieldsByTechnicalCharacteristics(Table characteristicsTable)
         {
-            /*The CreateDynamicInstance() method will create the dynamic object which will hold
-             * the Table values which are passed as an Argument to the step. It also will use the appropriate casting or conversion to 
-             * turn your string into the appropriate type.*/
-            dynamic characteristic = characteristics.CreateDynamicInstance(); 
-
-            string fuel = characteristic.Fuel;
-            string transmission = characteristic.Transmission;
-            string driveType = characteristic.DriveType;
-            double volumeFrom = characteristic.VolumeFrom;
-            double volumeTo = characteristic.VolumeTo;
-            int horsePowerFrom = characteristic.HorsePowerFrom;
-            int horsePowerTo = characteristic.HorsePowerTo;
-
             /*The CreateDynamicSet() method will create the dynamic object which will hold
              * the Table values which are passed as an Argument to the step. This creates a IEnumerable<dynamic>
              * for a several rows. The headers are the property names as before.*/
-            //IEnumerable <dynamic> characteristicList = characteristics.CreateDynamicSet();
+            IEnumerable <dynamic> characteristicList = characteristicsTable.CreateDynamicSet();
 
-            //var characteris = characteristicList.First();
+            var characteristicsFirstRow = characteristicList.First();
+            Console.WriteLine(characteristicsFirstRow.Fuel);
+
+            var fuelField = driver.FindElement(By.XPath($"//label[text()='{characteristicsFirstRow.Fuel}']"));
+            scrollToTheElement(fuelField);
+            fuelField.Click();
+            driver.FindElement(By.XPath($"//label[text()='{characteristicsFirstRow.Transmission}']")).Click();
+            //driver.FindElement(By.XPath($"//div[@id='drive']/label[text()='{characteristicsFirstRow.DriveType}']")).Click();
+
+            driver.FindElement(By.XPath($"//div[@id='volumeBlock']//input[1]")).SendKeys(characteristicsFirstRow.VolumeFrom.ToString());
+            driver.FindElement(By.XPath($"//div[@id='volumeBlock']//input[2]")).SendKeys(characteristicsFirstRow.VolumeTo.ToString());
+
+            driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Потужність']/..//input[1]")).SendKeys(characteristicsFirstRow.HorsePowerFrom.ToString());
+            driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Потужність']/..//input[2]")).SendKeys(characteristicsFirstRow.HorsePowerTo.ToString());
+            driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Пробіг, тис. км']/..//input[1]")).SendKeys(characteristicsFirstRow.MileageInThousandKmFrom.ToString());
+            driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Пробіг, тис. км']/..//input[2]")).SendKeys(characteristicsFirstRow.MileageInThousandKmTo.ToString());
+        }
+
+
+        [Then(@"I see searching result page by Technical characteristics")]
+        public void ThenISeeSearchingResultPageByTechnicalCharacteristics(Table characteristicsTable)
+        {
+            IEnumerable<dynamic> characteristicList = characteristicsTable.CreateDynamicSet();
+
+            var characteristicsFirstRow = characteristicList.First();
+
+            foreach (var item in driver.FindElements(By.XPath("//li/i[@class='icon-transmission']/..")) )
+            {
+                Assert.That(item.Text.Contains(characteristicsFirstRow.Transmission));
+            }
+
+            foreach (var item in driver.FindElements(By.XPath("//li/i[@class='icon-mileage']/..")))
+            {
+                int actualMileageInThousandKm = Int32.Parse(item.Text.Split(' ').First());
+
+                Assert.GreaterOrEqual(actualMileageInThousandKm, characteristicsFirstRow.MileageInThousandKmFrom,
+                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+                Assert.LessOrEqual(actualMileageInThousandKm, characteristicsFirstRow.MileageInThousandKmTo,
+                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+            }
+
+            foreach (var item in driver.FindElements(By.XPath("//li/i[@class='icon-fuel']/..")))
+            {
+                string actualFuelWithChar = item.Text.Split(' ').First();
+                string actualFuel = actualFuelWithChar.Remove(actualFuelWithChar.Length - 1);
+                Assert.AreEqual(actualFuel,characteristicsFirstRow.Fuel);
+
+                double actualVolume = double.Parse(item.Text.Split(' ').Skip(1).First());
+                Assert.GreaterOrEqual(actualVolume, characteristicsFirstRow.VolumeFrom,
+                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+                Assert.LessOrEqual(actualVolume, characteristicsFirstRow.VolumeTo,
+                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+            }
+
+        }
+
+        [When(@"I fill in filtering fields by Number of doors and  Number of seats")]
+        public void WhenIFillInFilteringFieldsByNumberOfDoorsAndNumberOfSeats(Table table)
+        {
+
+            /*The CreateDynamicInstance() method will create the dynamic object which will hold
+             * the Table values which are passed as an Argument to the step. It also will use the appropriate casting or conversion to 
+             * turn your string into the appropriate type.*/
+            dynamic characteristics = table.CreateDynamicInstance(); 
+
+            driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість дверей']/..//input[1]")).SendKeys(characteristics.NumberOfDoorsFrom.ToString());
+            driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість дверей']/..//input[2]")).SendKeys(characteristics.NumberOfDoorsTo.ToString());
+
+            driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість місць']/..//input[1]")).SendKeys(characteristics.NumberOfSeatsFrom.ToString());
+            driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість місць']/..//input[2]")).SendKeys(characteristics.NumberOfSeatsTo.ToString());
 
 
         }
 
+        [Then(@"I see searching result page by Number of doors and Number of seats")]
+        public void ThenISeeSearchingResultPageByNumberOfDoorsAndNumberOfSeats(Table table)
+        {
+            dynamic characteristics = table.CreateDynamicInstance();
+            var actualResult = driver.FindElement(By.XPath("//div[@class='box-panel description-car']//dd[1]")).Text.Split(' '); //Хетчбек • 5 дверей • 5 місць
 
+            int actualNumberOfDoors = Int32.Parse(actualResult.ElementAt(2)); 
+            Assert.GreaterOrEqual(actualNumberOfDoors, characteristics.NumberOfDoorsFrom,
+                   "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+            Assert.LessOrEqual(actualNumberOfDoors, characteristics.NumberOfDoorsTo,
+                "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+
+            int actualNumberOfSeats = Int32.Parse(actualResult.ElementAt(5));
+            Assert.GreaterOrEqual(actualNumberOfSeats, characteristics.NumberOfSeatsFrom,
+                   "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+            Assert.LessOrEqual(actualNumberOfSeats, characteristics.NumberOfSeatsTo,
+                "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
+        }
 
     }
 }

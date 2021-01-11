@@ -26,33 +26,21 @@ namespace AvtoRio.StepDefinitions
             Console.WriteLine(Car.TypeOfVehicle);
             Console.WriteLine(Car.BodyType);
             Console.WriteLine(Car.ProducingCountry);
-
-            IEnumerable<IWebElement> carTitles = driver.FindElements(By.XPath(".//div[@class='item ticket-title']/a"));
-            carTitles.ElementAt(0).Click();
-            wait(10);
+            
 
             string actualBodyType = driver.FindElement(By.XPath("//div[@class='box-panel description-car']//dd[1]")).Text;
             Assert.AreEqual(Car.BodyType, actualBodyType);
 
         }
 
-        [Then(@"I see searching result page by price")]
-        public void ThenISeeSearchingResultPageByPrice()
+        [When(@"I open '(.*)' item in list of cars")]
+        public void WhenIOpenItemInListOfCars(int indexOfCarInList)
         {
-            Console.WriteLine(Car.StartPrice);
-            Console.WriteLine(Car.EndPrice);
-
-            var carTitles = driver.FindElements(By.XPath(".//div[@class='content']//span[@class='bold green size22'][1]"));
-            foreach (var item in carTitles)
-            {
-                int actualPrice = Int32.Parse(WebDriverExtensions.RemoveWhitespace(item.Text));
-                Assert.GreaterOrEqual(actualPrice, Car.StartPrice,
-                    "Start price that set up on search page doesn't according to price on the list of cars");
-                Assert.LessOrEqual(actualPrice, Car.EndPrice,
-                    "End price that set up on search page doesn't according to price on the list of cars");
-            }
-
+            IEnumerable<IWebElement> carTitles = driver.FindElements(By.XPath(".//div[@class='item ticket-title']/a"));
+            carTitles.ElementAt(indexOfCarInList-1).Click();
+            wait(10);
         }
+
 
 
     }
