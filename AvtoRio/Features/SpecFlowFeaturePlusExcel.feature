@@ -13,3 +13,4 @@ Scenario Outline: Add two numbers
 @source:data.xlsx
 Examples: 
 |number1|number2|result|
+|50|70|120|

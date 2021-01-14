@@ -12,37 +12,39 @@ namespace AvtoRio
 {
     public class BasePage
     {
+        private IWebDriver _driver;
 
-
-        //public static string searchButton = "//*[@id='mainSearchForm']//span[text()='Розширений пошук']";
-        public static IWebDriver driver = new ChromeDriver();
-
-        public IJavaScriptExecutor js = driver as IJavaScriptExecutor;
-
-
-        public static void wait(int seconds)
+        public BasePage(IWebDriver driver)
         {
-            //public WebDriverWait i = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
-
+            _driver = driver;
         }
 
+       // public IJavaScriptExecutor js = _driver as IJavaScriptExecutor;
 
 
-        public static void switchToFrameByXPath(string xpath)
+        public void SwitchToFrameByXPath(string xpath)
         {
-            driver.SwitchTo().Frame(driver.FindElement(By.XPath(xpath)));
+            _driver.SwitchTo().Frame(_driver.FindElement(By.XPath(xpath)));
         }
 
-        public static void switchToFrameByName(string frameName)
+        public void SwitchToFrameByName(string frameName)
         {
-            driver.SwitchTo().Frame(frameName);
+            _driver.SwitchTo().Frame(frameName);
         }
 
-        public void scrollToTheElement(IWebElement webElement)
+        public void ScrollToTheElement(IWebElement webElement)
         {
+            IJavaScriptExecutor js = _driver as IJavaScriptExecutor;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", webElement);
         }
+
+        public void Wait(int seconds)
+        {
+            //public WebDriverWait i = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
+
+        }
+
     }
 
     public static class WebDriverExtensions

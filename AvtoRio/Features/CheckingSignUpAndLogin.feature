@@ -17,6 +17,7 @@ Examples:
 	| TestQA        | Test         | +380668235015 | Номер вже зареєстрований                     |
 	| NewUser       | UserQA       | +111111        | "+111111" - невірний мобільний номер телефону |
 
+
 	@Login
 Scenario Outline: User can login with valid and unvalid credentials
 	Given I go to the web page 'https://auto.ria.com/'
@@ -30,3 +31,15 @@ Examples:
 	| vorobbyova@gmail.com | qwerty   | Особистий кабінет |
 	| +380668235015        | qwerty   | Особистий кабінет |
 	| vorobbyova@gmail.com | qwertyyy | Невірний логін або пароль |
+
+
+Scenario: Enter user details in Loginform
+Given I login to the web application
+| PhoneOrEmail         | Password |
+| vorobbyova@gmail.com | qwerty   |
+When I click on 'Увійти' button 
+
+
+Scenario: Enter user details in UserForm in 2 lines
+Given I login and enter user details
+Then I should see ID number 'ID 8293170' 
