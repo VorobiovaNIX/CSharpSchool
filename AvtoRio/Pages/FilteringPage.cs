@@ -50,6 +50,19 @@ namespace AvtoRio.Pages
         [FindsBy(How = How.XPath, Using = ".//div[@class='item ticket-title']/a")]
         public IList<IWebElement> carTitles { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//div[@class='rows']/label[text()='Кількість дверей']/..//input[1]")]
+        public IWebElement numberOfDoorsFrom { get; set; }
+
+        [FindsBy(How=How.XPath,Using = "//div[@class='rows']/label[text()='Кількість дверей']/..//input[2]")]
+        public IWebElement numberOfDoorsTo { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='rows']/label[text()='Кількість місць']/..//input[1]")]
+        public IWebElement numberOfSeatsFrom { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='rows']/label[text()='Кількість місць']/..//input[2]")]
+        public IWebElement numberOfSeatsTo { get; set; }
+
+
         //List<IWebElement> carTitles => _driver.FindElements(By.XPath(".//div[@class='item ticket-title']/a")).ToList();
 
         public void SelectTypeOfVehicle(string typeOfVehicle)
@@ -96,7 +109,30 @@ namespace AvtoRio.Pages
             fuelField.Click();
         }
 
+        public void SelectTransmission(string transmission)
+        {
+            IWebElement transmissionField = _driver.FindElement(By.XPath($"//label[text()='{transmission}']"));
+            BasePage page = new BasePage(_driver);
+            page.ScrollToTheElement(transmissionField);
+            transmissionField.Click();
+        }
 
+        public void SelectVolume(string volumeFrom, string volumeTo)
+        {
+            _driver.FindElement(By.XPath($"//div[@id='volumeBlock']//input[1]")).SendKeys(volumeFrom);
+            _driver.FindElement(By.XPath($"//div[@id='volumeBlock']//input[2]")).SendKeys(volumeTo);
+        }
+
+        public void SelectHorsePower(string horsePowerFrom, string horsePowerTo)
+        {
+            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Потужність']/..//input[1]")).SendKeys(horsePowerFrom);
+            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Потужність']/..//input[2]")).SendKeys(horsePowerTo);
+        }
+        public void SelectMileageInThousandKm(string mileageInThousandKmFrom, string mileageInThousandKmTo)
+        {
+            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Пробіг, тис. км']/..//input[1]")).SendKeys(mileageInThousandKmFrom);
+            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Пробіг, тис. км']/..//input[2]")).SendKeys(mileageInThousandKmTo);
+        }
 
 
         IWebElement searchButton => _driver.FindElement(By.XPath("//button[@class='button small']"));

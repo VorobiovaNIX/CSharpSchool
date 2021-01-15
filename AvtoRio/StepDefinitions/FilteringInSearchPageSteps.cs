@@ -21,11 +21,14 @@ namespace AvtoRio.StepDefinitions
         private FilteringPage filteringPage { get; }
         private HomePage homePage { get; }
         private ListOfCarsPage listOfCarsPage { get; }
+        private CarSinglePage carSinglePage { get; }
         public FilteringInSearchPageSteps(IWebDriver driver)
         {
             _driver = ScenarioContext.Current.Get<IWebDriver>("currentDriver");
             filteringPage = new FilteringPage(_driver);
             homePage = new HomePage(_driver);
+            listOfCarsPage = new ListOfCarsPage(_driver);
+            carSinglePage = new CarSinglePage(_driver);
 
         }
 
@@ -77,16 +80,9 @@ namespace AvtoRio.StepDefinitions
 
             string brandCar = table.Rows[0]["Brand"];
             filteringPage.SelectBrandField(brandCar);
-
-            string modelCar = table.Rows[0]["Model"];
-            filteringPage.SelectModelField(modelCar);
-
-
-            string startYearCar = table.Rows[0]["StartYear"];
-            filteringPage.SelectStartYear(startYearCar);
-
-            string endYearCar = table.Rows[0]["EndYear"];
-            filteringPage.SelectEndYear(endYearCar);
+            filteringPage.SelectModelField(table.Rows[0]["Model"]);
+            filteringPage.SelectStartYear(table.Rows[0]["StartYear"]);
+            filteringPage.SelectEndYear(table.Rows[0]["EndYear"]);
 
             ScenarioContext.Current["InfoForNextStep"] = "Step 1 Passed";
             Console.WriteLine(ScenarioContext.Current["InfoForNextStep"].ToString());
@@ -195,20 +191,8 @@ namespace AvtoRio.StepDefinitions
             var data = table.CreateDynamicSet();
             var dataFirstRow = data.First();
 
-            //foreach (var item in data)
-            //{
-            //    Car.TypeOfVehicle = (string)item.TypeOfVehicle;
-            //    Car.BodyType = (string)item.BodyType;
-            //    Car.ProducingCountry = (string)item.ProducingCountry;
-            //}
-            //Console.WriteLine(Car.TypeOfVehicle);
-            //Console.WriteLine(Car.BodyType);
-            //Console.WriteLine(Car.ProducingCountry);
-
             filteringPage.SelectTypeOfVehicle(dataFirstRow.TypeOfVehicle);
-
             filteringPage.SelectBodyType(dataFirstRow.BodyType);
-
             filteringPage.SelectProducingCountry(dataFirstRow.ProducingCountry);
         }
 
@@ -232,16 +216,14 @@ namespace AvtoRio.StepDefinitions
         public void WhenIFillInFilteringFieldsByPrice(Table table)
         {
             dynamic data = table.CreateDynamicInstance();
-            //foreach (var item in data)
-            //{
-            //    Car.StartPrice = (int)item.StartPrice;
-            //    Car.EndPrice = (int)item.EndPrice;
-            //}
+            foreach (var item in data)
+            {
+                Car.StartPrice = (int)item.StartPrice;
+                Car.EndPrice = (int)item.EndPrice;
+            }
             //Console.WriteLine(Car.StartPrice);
             //Console.WriteLine(Car.EndPrice);
 
-            //var dictionary = TableExtensions.ToDictionary(table);
-            //var test = dictionary["StartPrice"];
 
             filteringPage.EnterStartPriceField(data.StartPrice.ToString());
             filteringPage.EnterEndPriceField(data.EndPrice.ToString());
@@ -292,17 +274,10 @@ namespace AvtoRio.StepDefinitions
             Console.WriteLine(characteristicsFirstRow.Fuel);
 
             filteringPage.SelectFuelField(characteristicsFirstRow.Fuel);
-
-
-            _driver.FindElement(By.XPath($"//label[text()='{characteristicsFirstRow.Transmission}']")).Click();
-
-            _driver.FindElement(By.XPath($"//div[@id='volumeBlock']//input[1]")).SendKeys(characteristicsFirstRow.VolumeFrom.ToString());
-            _driver.FindElement(By.XPath($"//div[@id='volumeBlock']//input[2]")).SendKeys(characteristicsFirstRow.VolumeTo.ToString());
-
-            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Потужність']/..//input[1]")).SendKeys(characteristicsFirstRow.HorsePowerFrom.ToString());
-            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Потужність']/..//input[2]")).SendKeys(characteristicsFirstRow.HorsePowerTo.ToString());
-            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Пробіг, тис. км']/..//input[1]")).SendKeys(characteristicsFirstRow.MileageInThousandKmFrom.ToString());
-            _driver.FindElement(By.XPath($"//div[@class='rows']/label[text()='Пробіг, тис. км']/..//input[2]")).SendKeys(characteristicsFirstRow.MileageInThousandKmTo.ToString());
+            filteringPage.SelectTransmission(characteristicsFirstRow.Transmission);
+            filteringPage.SelectVolume(characteristicsFirstRow.VolumeFrom.ToString(), characteristicsFirstRow.VolumeTo.ToString());
+            filteringPage.SelectHorsePower(characteristicsFirstRow.HorsePowerFrom.ToString(), characteristicsFirstRow.HorsePowerTo.ToString());
+            filteringPage.SelectMileageInThousandKm(characteristicsFirstRow.MileageInThousandKmFrom.ToString(), characteristicsFirstRow.MileageInThousandKmTo.ToString());
         }
 
 
@@ -313,34 +288,10 @@ namespace AvtoRio.StepDefinitions
 
             var characteristicsFirstRow = characteristicList.First();
 
-            foreach (var item in _driver.FindElements(By.XPath("//li/i[@class='icon-transmission']/..")) )
-            {
-                Assert.That(item.Text.Contains(characteristicsFirstRow.Transmission));
-            }
-
-            foreach (var item in _driver.FindElements(By.XPath("//li/i[@class='icon-mileage']/..")))
-            {
-                int actualMileageInThousandKm = Int32.Parse(item.Text.Split(' ').First());
-
-                Assert.GreaterOrEqual(actualMileageInThousandKm, characteristicsFirstRow.MileageInThousandKmFrom,
-                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
-                Assert.LessOrEqual(actualMileageInThousandKm, characteristicsFirstRow.MileageInThousandKmTo,
-                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
-            }
-
-            foreach (var item in _driver.FindElements(By.XPath("//li/i[@class='icon-fuel']/..")))
-            {
-                string actualFuelWithChar = item.Text.Split(' ').First();
-                string actualFuel = actualFuelWithChar.Remove(actualFuelWithChar.Length - 1);
-                Assert.AreEqual(actualFuel,characteristicsFirstRow.Fuel);
-
-                double actualVolume = double.Parse(item.Text.Split(' ').Skip(1).First());
-                Assert.GreaterOrEqual(actualVolume, characteristicsFirstRow.VolumeFrom,
-                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
-                Assert.LessOrEqual(actualVolume, characteristicsFirstRow.VolumeTo,
-                    "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
-            }
-
+            listOfCarsPage.ShouldSeeTransmission(characteristicsFirstRow.Transmission);
+            listOfCarsPage.ShouldSeeMileageInThousandKm(characteristicsFirstRow.MileageInThousandKmFrom, characteristicsFirstRow.MileageInThousandKmTo);
+            listOfCarsPage.ShouldSeeFuel(characteristicsFirstRow.Fuel);
+            listOfCarsPage.ShouldSeeVolume(characteristicsFirstRow.VolumeFrom, characteristicsFirstRow.VolumeTo);
         }
 
         [When(@"I fill in filtering fields by Number of doors and  Number of seats")]
@@ -352,11 +303,11 @@ namespace AvtoRio.StepDefinitions
              * turn your string into the appropriate type.*/
             dynamic characteristics = table.CreateDynamicInstance();
 
-            _driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість дверей']/..//input[1]")).SendKeys(characteristics.NumberOfDoorsFrom.ToString());
-            _driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість дверей']/..//input[2]")).SendKeys(characteristics.NumberOfDoorsTo.ToString());
+            filteringPage.numberOfDoorsFrom.SendKeys(characteristics.NumberOfDoorsFrom.ToString());
+            filteringPage.numberOfDoorsTo.SendKeys(characteristics.NumberOfDoorsTo.ToString());
 
-            _driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість місць']/..//input[1]")).SendKeys(characteristics.NumberOfSeatsFrom.ToString());
-            _driver.FindElement(By.XPath("//div[@class='rows']/label[text()='Кількість місць']/..//input[2]")).SendKeys(characteristics.NumberOfSeatsTo.ToString());
+            filteringPage.numberOfSeatsFrom.SendKeys(characteristics.NumberOfSeatsFrom.ToString());
+            filteringPage.numberOfSeatsTo.SendKeys(characteristics.NumberOfSeatsTo.ToString());
 
 
         }
