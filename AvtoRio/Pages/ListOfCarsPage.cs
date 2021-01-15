@@ -20,7 +20,6 @@ namespace AvtoRio.Pages
             PageFactory.InitElements(_driver, this);
         }
 
-
         IWebElement sortingField => _driver.FindElement(By.XPath("//select[@id='leftFilterSortSelect']"));
 
         IWebElement searchBtn => _driver.FindElement(By.XPath("//a[text()='Уточнити пошук']"));
@@ -98,6 +97,13 @@ namespace AvtoRio.Pages
                 Assert.AreEqual(actualFuel,fuel);
 
             }
+        }
+
+        public void ShouldSeeCertainBreadcrumbs(string typeOfVehicle, string underSection)
+        {
+            Assert.True(_driver.FindElement(By.XPath($"//div[@class='breadcrumbs size13']/div/a/span[text()='{typeOfVehicle}']")).Displayed);
+            Assert.True(_driver.FindElement(By.XPath($"//div[@class='breadcrumbs size13']/div/span[text()='{underSection}']")).Displayed);
+
         }
     }
 }

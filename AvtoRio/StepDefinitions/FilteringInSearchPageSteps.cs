@@ -146,6 +146,7 @@ namespace AvtoRio.StepDefinitions
             Console.WriteLine(ScenarioContext.Current.CurrentScenarioBlock);
         }
 
+        [Scope(Tag = "Filtering")]
         [When(@"I click on Пошук button")]
         public void WhenIClickOnSearchButton()
         {
@@ -331,6 +332,46 @@ namespace AvtoRio.StepDefinitions
             Assert.LessOrEqual(actualNumberOfSeats, characteristics.NumberOfSeatsTo,
                 "Mileage that set up on search page doesn't according to the Mileage in thousand km on the list of cars");
         }
+
+        [When(@"I click on TypeOfVehicle and Brand from Home page")]
+        public void WhenIClickOnTypeOfVehicleAndBrandFromHomePage(Table table)
+        {
+            var characteristics = table.CreateDynamicSet();
+            var secondRow = characteristics.Skip(1).First();
+            homePage.ClickOnTypeOfVehicle(secondRow.TypeOfVehicle);
+            homePage.ClickOnUnderSection(secondRow.Brand);
+        }
+
+        [Then(@"I should see certain breadcrumbs")]
+        public void ThenIShouldSeeCertainBreadcrumbs(Table table)
+        {
+            var characteristics = table.CreateDynamicSet();
+            var secondRow = characteristics.Skip(1).First();
+            listOfCarsPage.ShouldSeeCertainBreadcrumbs(secondRow.TypeOfVehicle, secondRow.Brand);
+
+
+        }
+
+        [When(@"I search by Type of vehicle Brand and Model from Home page")]
+        public void WhenISearchByTypeOfVehicleBrandAndModelFromHomePage(Table table)
+        {
+            var characteristics = table.CreateDynamicSet();
+            var firstRow = characteristics.First();
+
+            homePage.SearchByBrand(firstRow.Brand);
+            homePage.SearchByModel(firstRow.Model);
+            homePage.SearchByYear(firstRow.StartYear, firstRow.EndYear);
+
+        }
+
+        [Scope(Tag = "SearchingFromHomePage")]
+        [When(@"I click on Пошук button")]
+        public void WhenIClickOnПошукButton()
+        {
+            homePage.ClickOnSearchButton();
+        }
+
+
 
     }
 }

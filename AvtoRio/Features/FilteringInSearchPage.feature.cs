@@ -244,10 +244,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verifying sorting list of cars on the result searching web page")]
         [NUnit.Framework.CategoryAttribute("Sorting")]
+        [NUnit.Framework.CategoryAttribute("Filtering")]
         public virtual void VerifyingSortingListOfCarsOnTheResultSearchingWebPage()
         {
             string[] tagsOfScenario = new string[] {
-                    "Sorting"};
+                    "Sorting",
+                    "Filtering"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verifying sorting list of cars on the result searching web page", null, tagsOfScenario, argumentsOfScenario);
 #line 37
@@ -495,6 +497,149 @@ this.ScenarioInitialize(scenarioInfo);
                             "5"});
 #line 87
  testRunner.Then("I see searching result page by Number of doors and Number of seats", ((string)(null)), table9, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verifying that filtering by TypeOfVehicle and Brand from Home page  works as expe" +
+            "cted")]
+        [NUnit.Framework.CategoryAttribute("SearchingFromHomePage")]
+        public virtual void VerifyingThatFilteringByTypeOfVehicleAndBrandFromHomePageWorksAsExpected()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "SearchingFromHomePage"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verifying that filtering by TypeOfVehicle and Brand from Home page  works as expe" +
+                    "cted", null, tagsOfScenario, argumentsOfScenario);
+#line 92
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 93
+ testRunner.Given("I go to the web page \'https://auto.ria.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 94
+ testRunner.Then("the web page is opened \'Автобазар №1. Купити і продати авто легко\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "TypeOfVehicle",
+                            "Brand"});
+                table10.AddRow(new string[] {
+                            "Легкові б/у",
+                            "BMW"});
+                table10.AddRow(new string[] {
+                            "Мото",
+                            "Гольф-кар"});
+#line 95
+ testRunner.When("I click on TypeOfVehicle and Brand from Home page", ((string)(null)), table10, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "TypeOfVehicle",
+                            "Brand"});
+                table11.AddRow(new string[] {
+                            "Бу авто",
+                            "BMW"});
+                table11.AddRow(new string[] {
+                            "Мото",
+                            "Гольф-кар"});
+#line 99
+ testRunner.Then("I should see certain breadcrumbs", ((string)(null)), table11, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verifying fast search from Home page")]
+        [NUnit.Framework.CategoryAttribute("SearchingFromHomePage")]
+        public virtual void VerifyingFastSearchFromHomePage()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "SearchingFromHomePage"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verifying fast search from Home page", null, tagsOfScenario, argumentsOfScenario);
+#line 105
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 106
+ testRunner.Given("I go to the web page \'https://auto.ria.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 107
+ testRunner.Then("the web page is opened \'Автобазар №1. Купити і продати авто легко\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Brand",
+                            "Model",
+                            "StartYear",
+                            "EndYear"});
+                table12.AddRow(new string[] {
+                            "BMW",
+                            "M3",
+                            "2013",
+                            "2017"});
+                table12.AddRow(new string[] {
+                            "Audi",
+                            "A5",
+                            "2016",
+                            "2019"});
+#line 108
+ testRunner.When("I search by Type of vehicle Brand and Model from Home page", ((string)(null)), table12, "When ");
+#line hidden
+#line 112
+ testRunner.And("I click on Пошук button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Brand",
+                            "Model",
+                            "StartYear",
+                            "EndYear"});
+                table13.AddRow(new string[] {
+                            "BMW",
+                            "M3",
+                            "2013",
+                            "2017"});
+                table13.AddRow(new string[] {
+                            "Audi",
+                            "A5",
+                            "2016",
+                            "2019"});
+#line 113
+ testRunner.Then("I see searching result page by Brand, model and year", ((string)(null)), table13, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

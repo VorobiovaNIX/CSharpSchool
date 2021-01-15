@@ -33,7 +33,7 @@ Scenario: Verifying that filtering by Type of vehicle, Body type and Producing c
 	And I open '1' item in list of cars 
 	Then I should get the same value from Extended steps
 
-	@Sorting
+	@Sorting @Filtering
 Scenario: Verifying sorting list of cars on the result searching web page
 	Given I go to the web page 'https://auto.ria.com/'
 	Then the web page is opened 'Автобазар №1. Купити і продати авто легко'
@@ -87,3 +87,31 @@ Scenario: Verifying that filtering by Number of doors and Number of seats and  w
 	Then I see searching result page by Number of doors and Number of seats
 	| NumberOfDoorsFrom | NumberOfDoorsTo | NumberOfSeatsFrom | NumberOfSeatsTo |
 	| 2                 | 5               | 2                 | 5               |
+
+	@SearchingFromHomePage
+Scenario: Verifying that filtering by TypeOfVehicle and Brand from Home page  works as expected 
+	Given I go to the web page 'https://auto.ria.com/'
+	Then the web page is opened 'Автобазар №1. Купити і продати авто легко'
+	When I click on TypeOfVehicle and Brand from Home page
+	| TypeOfVehicle | Brand     |
+	| Легкові б/у   | BMW       |
+	| Мото          | Гольф-кар |
+	Then I should see certain breadcrumbs
+	| TypeOfVehicle | Brand     |
+	| Бу авто       | BMW       |
+	| Мото          | Гольф-кар |
+	
+	@SearchingFromHomePage
+Scenario: Verifying fast search from Home page
+	Given I go to the web page 'https://auto.ria.com/'
+	Then the web page is opened 'Автобазар №1. Купити і продати авто легко'
+	When I search by Type of vehicle Brand and Model from Home page
+	 | Brand | Model | StartYear | EndYear |
+	 | BMW   | M3    | 2013      | 2017    |
+	 | Audi  | A5    | 2016      | 2019    |
+	And I click on Пошук button
+	Then I see searching result page by Brand, model and year
+	| Brand | Model | StartYear | EndYear |
+	| BMW   | M3    | 2013      | 2017    |
+	| Audi  | A5    | 2016      | 2019    |
+	
