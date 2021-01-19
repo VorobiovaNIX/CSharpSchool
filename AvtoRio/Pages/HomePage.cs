@@ -48,6 +48,7 @@ namespace AvtoRio.Pages
         {
             _driver.FindElement(By.XPath("//div[@id='brandTooltipBrandAutocomplete-brand']")).Click();
             _driver.FindElement(By.XPath($"(//ul[@class='unstyle scrollbar autocomplete-select']/li/a[text()='{brandName}'])[1]"),3).Click();
+            
         }
 
         public void SearchByModel(string modelName)

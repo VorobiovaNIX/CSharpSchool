@@ -217,11 +217,11 @@ namespace AvtoRio.StepDefinitions
         public void WhenIFillInFilteringFieldsByPrice(Table table)
         {
             dynamic data = table.CreateDynamicInstance();
-            foreach (var item in data)
-            {
-                Car.StartPrice = (int)item.StartPrice;
-                Car.EndPrice = (int)item.EndPrice;
-            }
+            //foreach (var item in data)
+            //{
+            //    Car.StartPrice = (int)item.StartPrice;
+            //    Car.EndPrice = (int)item.EndPrice;
+            //}
             //Console.WriteLine(Car.StartPrice);
             //Console.WriteLine(Car.EndPrice);
 
@@ -317,7 +317,7 @@ namespace AvtoRio.StepDefinitions
         public void ThenISeeSearchingResultPageByNumberOfDoorsAndNumberOfSeats(Table table)
         {
             dynamic characteristics = table.CreateDynamicInstance();
-            var actualResult = _driver.FindElement(By.XPath("//div[@class='box-panel description-car']//dd[1]")).Text.Split(' '); //Хетчбек • 5 дверей • 5 місць
+            var actualResult = _driver.FindElement(By.XPath("//div[@class='box-panel description-car']//dd[1]"),3).Text.Split(' '); //Хетчбек • 5 дверей • 5 місць
             int actualNumberOfDoors = Int32.Parse(actualResult.ElementAt(actualResult.Length - 5));
 
             Assert.GreaterOrEqual(actualNumberOfDoors, characteristics.NumberOfDoorsFrom,
@@ -362,6 +362,11 @@ namespace AvtoRio.StepDefinitions
             homePage.SearchByModel(firstRow.Model);
             homePage.SearchByYear(firstRow.StartYear, firstRow.EndYear);
 
+            using (Utils.AppContext context = new Utils.AppContext())
+            {
+                context.Cars.Add(new CarDetails() { Brand = "Mazda", Model = "6", StartYear = 2015, EndYear = 2020 });
+                context.SaveChanges();
+            }
         }
 
         [Scope(Tag = "SearchingFromHomePage")]

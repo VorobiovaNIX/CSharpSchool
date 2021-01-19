@@ -47,7 +47,7 @@ namespace AvtoRio.Pages
         }
 
         //Classical way of initializing Pages via POM concept - Until Selenium 3.10.0
-        [FindsBy(How = How.XPath, Using = ".//div[@class='item ticket-title']/a")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='item ticket-title']/a")]
         public IList<IWebElement> carTitles { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@class='rows']/label[text()='Кількість дверей']/..//input[1]")]
