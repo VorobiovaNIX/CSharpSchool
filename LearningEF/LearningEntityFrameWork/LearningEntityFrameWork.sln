@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningEntityFrameWork", "LearningEntityFrameWork.csproj", "{A968D0F7-410F-46AD-B952-B4C9E127900D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningEntityFrameWork", "LearningEntityFrameWork.csproj", "{A968D0F7-410F-46AD-B952-B4C9E127900D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

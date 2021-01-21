@@ -18,10 +18,10 @@ namespace LearningEntityFrameWork
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestDB_001;Trusted_Connection=True;");
         }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Tablet>();
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Tablet>();
+        }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

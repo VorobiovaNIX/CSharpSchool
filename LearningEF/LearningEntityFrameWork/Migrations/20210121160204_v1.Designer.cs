@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearningEntityFrameWork.Migrations
 {
     [DbContext(typeof(ContextApp))]
-    [Migration("20210121150437_v1")]
+    [Migration("20210121160204_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,24 @@ namespace LearningEntityFrameWork.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Phones");
+                });
+
+            modelBuilder.Entity("LearningEntityFrameWork.Tablet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tablet");
                 });
 #pragma warning restore 612, 618
         }
