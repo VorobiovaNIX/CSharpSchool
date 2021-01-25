@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace _004_Configuring_keys.Migrations
+namespace _009_Data_types.Migrations
 {
     public partial class v1 : Migration
     {
@@ -10,13 +10,13 @@ namespace _004_Configuring_keys.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Number = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "varchar(200)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Number);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
         }
 

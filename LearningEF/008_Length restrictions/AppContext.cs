@@ -4,33 +4,32 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace _004_Configuring_keys
+namespace _008_Length_restrictions
 {
-    public class ContextApp : DbContext
+    class AppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public ContextApp()
+        public AppContext()
         {
             Database.EnsureCreated();
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestDB_004;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestDB_008;Trusted_Connection=True;");
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(u => u.Number).HasName("UsersPrimaryKey"); // - set up property Number as primary key 
+            modelBuilder.Entity<User>().Property(b => b.Name).HasMaxLength(50);
 
         }
-
     }
 
     public class User
     {
-        //[Key] // set up property below as primary key 
-        public int Number { get; set; }
+        public int Id { get; set; }
+        //[MaxLength(50)]
         public string Name { get; set; }
-
+        
     }
 }

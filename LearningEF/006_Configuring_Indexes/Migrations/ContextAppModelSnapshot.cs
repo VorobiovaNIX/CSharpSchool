@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _004_Configuring_keys;
+using _006_Configuring_Indexes;
 
-namespace _004_Configuring_keys.Migrations
+namespace _006_Configuring_Indexes.Migrations
 {
     [DbContext(typeof(ContextApp))]
     partial class ContextAppModelSnapshot : ModelSnapshot
@@ -18,9 +18,9 @@ namespace _004_Configuring_keys.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("_004_Configuring_keys.User", b =>
+            modelBuilder.Entity("_006_Configuring_Indexes.User", b =>
                 {
-                    b.Property<int>("Number")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -28,8 +28,17 @@ namespace _004_Configuring_keys.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Number")
-                        .HasName("UsersPrimaryKey");
+                    b.Property<string>("Passport")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Passport")
+                        .IsUnique()
+                        .HasFilter("[Passport] IS NOT NULL");
 
                     b.ToTable("Users");
                 });

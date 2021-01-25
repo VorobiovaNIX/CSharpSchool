@@ -2,34 +2,34 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace _004_Configuring_keys
+namespace _009_Data_types
 {
-    public class ContextApp : DbContext
+    class AppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public ContextApp()
+        public AppContext()
         {
             Database.EnsureCreated();
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestDB_004;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestDB_009;Trusted_Connection=True;");
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(u => u.Number).HasName("UsersPrimaryKey"); // - set up property Number as primary key 
+            modelBuilder.Entity<User>().Property(u => u.Name).HasColumnType("varchar(200)");
 
         }
-
     }
 
     public class User
     {
-        //[Key] // set up property below as primary key 
-        public int Number { get; set; }
+        public int Id { get; set; }
+        //[Column(TypeName= "varchar(100)")]
         public string Name { get; set; }
 
     }

@@ -2,7 +2,7 @@
 
 namespace LearningEntityFrameWork.Migrations
 {
-    public partial class v1 : Migration
+    public partial class v2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
